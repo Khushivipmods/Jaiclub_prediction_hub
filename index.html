@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -5,106 +6,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khushi VIP Predictor</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f0f; color: white; text-align: center; margin: 0; padding: 0; }
-        .header { background: linear-gradient(135deg, #ff007f, #ff5e62); color: white; padding: 25px; font-size: 26px; font-weight: bold; box-shadow: 0 4px 15px rgba(255,0,127,0.3); text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .card { background: #1a1a1a; margin: 20px; padding: 25px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .timer { font-size: 22px; color: #ffcc00; margin-bottom: 10px; font-weight: bold; background: #2a2a2a; display: inline-block; padding: 5px 20px; border-radius: 50px; }
-        .prediction-title { font-size: 16px; color: #aaa; text-transform: uppercase; letter-spacing: 2px; margin-top: 15px; }
-        .prediction-box { font-size: 48px; font-weight: 900; color: #00ff00; margin: 15px 0; text-shadow: 0 0 20px #00ff00; letter-spacing: 2px; }
-        .btn { display: inline-block; background: linear-gradient(90deg, #ff007f, #ff5e62); color: white; padding: 18px 0; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 15px; width: 90%; font-size: 18px; box-shadow: 0 5px 20px rgba(255,0,127,0.4); transition: 0.3s; }
-        .telegram-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); margin-top: 25px; box-shadow: 0 5px 20px rgba(33,150,243,0.4); }
-        .footer { font-size: 12px; color: #555; margin-top: 30px; padding-bottom: 20px; }
-        
-        /* Secret Admin Panel Style */
-        #adminPanel { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: black; padding: 20px; border-radius: 15px; z-index: 100; width: 85%; box-shadow: 0 0 50px rgba(0,0,0,1); }
-        #adminPanel h3 { margin-top: 0; color: #ff007f; }
-        #adminPanel input { width: 90%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
-        #adminPanel button { background: #ff007f; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: white; text-align: center; margin: 0; padding: 0; }
+        .header { background: linear-gradient(135deg, #ffcc00, #ff9900); color: #000; padding: 25px; font-size: 26px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .card { background: #1e1e1e; margin: 20px; padding: 25px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .timer { font-size: 20px; color: #ffcc00; margin-bottom: 10px; font-weight: bold; }
+        .prediction-title { font-size: 16px; color: #bbb; text-transform: uppercase; letter-spacing: 2px; }
+        .prediction-box { font-size: 40px; font-weight: 900; color: #00ff00; margin: 15px 0; text-shadow: 0 0 20px #00ff00; }
+        .number-display { color: #ffcc00; font-size: 55px; display: block; }
+        .btn { display: inline-block; background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; padding: 18px 0; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 15px; width: 90%; font-size: 18px; box-shadow: 0 5px 15px rgba(0,200,83,0.3); }
+        .telegram-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: white; margin-top: 25px; }
+        .footer { font-size: 12px; color: #666; margin-top: 30px; padding-bottom: 20px; }
+
+        /* Popup Style */
+        .overlay { display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; }
+        .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #000; width: 85%; padding: 25px; border-radius: 20px; text-align: center; z-index: 1001; border: 4px solid #ffcc00; }
+        .popup h2 { color: #ff0000; margin-top: 0; }
+        .popup p { font-size: 18px; font-weight: bold; line-height: 1.5; }
+        .popup-btn { background: #ffcc00; color: #000; padding: 12px 30px; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; margin-top: 15px; cursor: pointer; }
+
+        #adminPanel { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: black; padding: 20px; border-radius: 15px; z-index: 2000; width: 85%; }
+        #adminPanel input { width: 90%; padding: 10px; margin-bottom: 15px; }
     </style>
 </head>
 <body onclick="checkAdmin()">
 
-    <div class="header">✨ KHUSHI PREDICTION ✨</div>
+    <div id="noteOverlay" class="overlay">
+        <div class="popup">
+            <h2>⚠️ ज़रूरी सूचना ⚠️</h2>
+            <p>ये Prediction तभी 100% Winning होगा जब आप हमारी Link से "New Account" बनाकर खेलेंगे।</p>
+            <p style="color: blue; font-size: 14px;">(Purane account me loss ho sakta hai)</p>
+            <button class="popup-btn" onclick="closePopup()">OK, SAMAJH GAYA</button>
+        </div>
+    </div>
+
+    <div class="header">👑 KHUSHI OFFICIAL 👑</div>
 
     <div class="card">
         <div class="timer" id="clock">00:60</div>
         <div class="prediction-title">Next Expected Result</div>
-        <div class="prediction-box" id="predValue">ANALYZING...</div>
-        <p style="color: #ffcc00; font-weight: bold;">⚠️ Always use 3X Investment Plan</p>
+        <div class="prediction-box">
+            <span id="sizeText">ANALYZING...</span>
+            <span id="numText" class="number-display"></span>
+        </div>
+        <p style="color: #888;">Strategy: Always follow 3X Investment Plan</p>
         <a href="https://www.jaiclub11.com/#/register?invitationCode=27235106772" class="btn">REGISTER & PLAY NOW</a>
     </div>
 
     <div class="card">
         <h3 style="color: #00bcd4; margin-top: 0;">JOIN VIP TELEGRAM</h3>
-        <p>Daily 99% Accuracy Sure Shot Signals ke liye hamara official channel join karein.</p>
+        <p>Daily 10+ Sure Shot Signals ke liye join karein.</p>
         <a href="https://t.me/+5KdTkmfQqNNhYmJl" class="btn telegram-btn">JOIN TELEGRAM NOW</a>
     </div>
 
-    <div class="footer">Powered by Khushi Official Predictor v3.0</div>
+    <div class="footer">Powered by Khushi VIP Predictor v5.0</div>
 
     <div id="adminPanel">
-        <h3>Khushi Admin Control</h3>
-        <p style="font-size: 14px; color: #666;">Enter next result below:</p>
-        <input type="text" id="newPred" placeholder="Example: RED BIG">
+        <h3>Admin Control</h3>
+        <input type="text" id="newPred" placeholder="Example: BIG 7">
         <button onclick="setPrediction()">SET RESULT</button>
     </div>
 
     <script>
-        // Timer Logic
+        function closePopup() {
+            document.getElementById('noteOverlay').style.display = 'none';
+        }
+
         function startTimer() {
             let timeLeft = 60;
             setInterval(function() {
                 timeLeft--;
                 if (timeLeft < 0) timeLeft = 59;
-                let display = timeLeft < 10 ? "00:0" + timeLeft : "00:" + timeLeft;
-                document.getElementById('clock').innerHTML = display;
+                document.getElementById('clock').innerHTML = timeLeft < 10 ? "00:0" + timeLeft : "00:" + timeLeft;
                 
-                // Har minute prediction change
                 if (timeLeft == 59) {
-                    document.getElementById('predValue').innerHTML = "WAITING...";
-                    document.getElementById('predValue').style.color = "#888";
-                    
+                    document.getElementById('sizeText').innerHTML = "WAITING...";
+                    document.getElementById('numText').innerHTML = "";
                     setTimeout(() => { 
-                        document.getElementById('predValue').style.color = "#00ff00";
+                        let finalResult;
                         if(localStorage.getItem('khushiPred')) {
-                           document.getElementById('predValue').innerHTML = localStorage.getItem('khushiPred');
-                           localStorage.removeItem('khushiPred'); // Use hone ke baad remove (optional)
+                           finalResult = localStorage.getItem('khushiPred');
+                           localStorage.removeItem('khushiPred');
                         } else {
-                           const res = ["RED BIG", "GREEN SMALL", "RED SMALL", "GREEN BIG"];
-                           document.getElementById('predValue').innerHTML = res[Math.floor(Math.random() * res.length)];
+                           const sizes = ["BIG", "SMALL"];
+                           finalResult = sizes[Math.floor(Math.random() * 2)] + " " + Math.floor(Math.random() * 10);
                         }
+                        let parts = finalResult.split(" ");
+                        document.getElementById('sizeText').innerHTML = parts[0];
+                        document.getElementById('numText').innerHTML = "No. " + parts[1];
                     }, 3000);
                 }
             }, 1000);
         }
 
-        // Secret Admin Trigger (5 Clicks)
         let clickCount = 0;
         let lastClickTime = 0;
         function checkAdmin() {
             const currentTime = new Date().getTime();
-            if (currentTime - lastClickTime > 2000) clickCount = 0; // 2 sec gap reset
-            
-            clickCount++;
-            lastClickTime = currentTime;
-            
-            if (clickCount >= 5) {
-                document.getElementById('adminPanel').style.display = 'block';
-                clickCount = 0;
-            }
+            if (currentTime - lastClickTime > 2000) clickCount = 0;
+            clickCount++; lastClickTime = currentTime;
+            if (clickCount >= 5) { document.getElementById('adminPanel').style.display = 'block'; clickCount = 0; }
         }
 
         function setPrediction() {
             let val = document.getElementById('newPred').value;
             if(val) {
                 localStorage.setItem('khushiPred', val.toUpperCase());
-                document.getElementById('predValue').innerHTML = "SET: " + val.toUpperCase();
+                alert("Result Set!");
                 document.getElementById('adminPanel').style.display = 'none';
-                document.getElementById('newPred').value = "";
-                alert("Next Prediction Set to: " + val.toUpperCase());
             }
         }
-
         window.onload = startTimer;
     </script>
 </body>
