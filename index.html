@@ -3,47 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guruji VIP Predictor</title>
+    <title>Khushi VIP Predictor</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: white; text-align: center; margin: 0; padding: 0; }
-        .header { background: linear-gradient(135deg, #ffcc00, #ff9900); color: #000; padding: 25px; font-size: 26px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .card { background: #1e1e1e; margin: 20px; padding: 25px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .timer { font-size: 20px; color: #ffcc00; margin-bottom: 10px; font-weight: bold; }
-        .prediction-title { font-size: 18px; color: #bbb; text-transform: uppercase; letter-spacing: 2px; }
-        .prediction-box { font-size: 45px; font-weight: 900; color: #00ff00; margin: 20px 0; text-shadow: 0 0 20px #00ff00; }
-        .btn { display: inline-block; background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; padding: 18px 0; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 15px; width: 90%; font-size: 18px; transition: 0.3s; }
-        .telegram-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: white; margin-top: 25px; }
-        .footer { font-size: 12px; color: #666; margin-top: 30px; padding-bottom: 20px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f0f; color: white; text-align: center; margin: 0; padding: 0; }
+        .header { background: linear-gradient(135deg, #ff007f, #ff5e62); color: white; padding: 25px; font-size: 26px; font-weight: bold; box-shadow: 0 4px 15px rgba(255,0,127,0.3); text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .card { background: #1a1a1a; margin: 20px; padding: 25px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .timer { font-size: 22px; color: #ffcc00; margin-bottom: 10px; font-weight: bold; background: #2a2a2a; display: inline-block; padding: 5px 20px; border-radius: 50px; }
+        .prediction-title { font-size: 16px; color: #aaa; text-transform: uppercase; letter-spacing: 2px; margin-top: 15px; }
+        .prediction-box { font-size: 48px; font-weight: 900; color: #00ff00; margin: 15px 0; text-shadow: 0 0 20px #00ff00; letter-spacing: 2px; }
+        .btn { display: inline-block; background: linear-gradient(90deg, #ff007f, #ff5e62); color: white; padding: 18px 0; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 15px; width: 90%; font-size: 18px; box-shadow: 0 5px 20px rgba(255,0,127,0.4); transition: 0.3s; }
+        .telegram-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); margin-top: 25px; box-shadow: 0 5px 20px rgba(33,150,243,0.4); }
+        .footer { font-size: 12px; color: #555; margin-top: 30px; padding-bottom: 20px; }
         
         /* Secret Admin Panel Style */
-        #adminPanel { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: black; padding: 20px; border-radius: 10px; z-index: 100; width: 80%; }
-        #adminPanel input { width: 90%; padding: 10px; margin-bottom: 10px; }
+        #adminPanel { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: black; padding: 20px; border-radius: 15px; z-index: 100; width: 85%; box-shadow: 0 0 50px rgba(0,0,0,1); }
+        #adminPanel h3 { margin-top: 0; color: #ff007f; }
+        #adminPanel input { width: 90%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
+        #adminPanel button { background: #ff007f; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body onclick="checkAdmin()">
 
-    <div class="header">👑 GURUJI OFFICIAL 👑</div>
+    <div class="header">✨ KHUSHI PREDICTION ✨</div>
 
     <div class="card">
-        <div class="timer" id="clock">00:45</div>
+        <div class="timer" id="clock">00:60</div>
         <div class="prediction-title">Next Expected Result</div>
-        <div class="prediction-box" id="predValue">WAITING...</div>
-        <p style="color: #888;">Note: Always use 3X Plan for 100% Profit</p>
+        <div class="prediction-box" id="predValue">ANALYZING...</div>
+        <p style="color: #ffcc00; font-weight: bold;">⚠️ Always use 3X Investment Plan</p>
         <a href="https://www.jaiclub11.com/#/register?invitationCode=27235106772" class="btn">REGISTER & PLAY NOW</a>
     </div>
 
     <div class="card">
-        <h3>VIP TELEGRAM JOIN KAREIN</h3>
-        <p>Daily 10+ Sure Shot Signals ke liye hamara official channel join karein.</p>
-        <a href="https://t.me/+5kOTkmfQqNNhYmJl" class="btn telegram-btn">JOIN TELEGRAM NOW</a>
+        <h3 style="color: #00bcd4; margin-top: 0;">JOIN VIP TELEGRAM</h3>
+        <p>Daily 99% Accuracy Sure Shot Signals ke liye hamara official channel join karein.</p>
+        <a href="https://t.me/+5KdTkmfQqNNhYmJl" class="btn telegram-btn">JOIN TELEGRAM NOW</a>
     </div>
 
-    <div class="footer">Powered by GURUJI Predictor v2.0</div>
+    <div class="footer">Powered by Khushi Official Predictor v3.0</div>
 
     <div id="adminPanel">
-        <h3>Admin Control</h3>
-        <input type="text" id="newPred" placeholder="Enter Result (e.g. RED BIG)">
-        <button onclick="setPrediction()">Set Prediction</button>
+        <h3>Khushi Admin Control</h3>
+        <p style="font-size: 14px; color: #666;">Enter next result below:</p>
+        <input type="text" id="newPred" placeholder="Example: RED BIG">
+        <button onclick="setPrediction()">SET RESULT</button>
     </div>
 
     <script>
@@ -52,16 +55,20 @@
             let timeLeft = 60;
             setInterval(function() {
                 timeLeft--;
-                if (timeLeft <= 0) timeLeft = 60;
+                if (timeLeft < 0) timeLeft = 59;
                 let display = timeLeft < 10 ? "00:0" + timeLeft : "00:" + timeLeft;
                 document.getElementById('clock').innerHTML = display;
                 
-                // Har minute prediction reset
+                // Har minute prediction change
                 if (timeLeft == 59) {
-                    document.getElementById('predValue').innerHTML = "ANALYZING...";
+                    document.getElementById('predValue').innerHTML = "WAITING...";
+                    document.getElementById('predValue').style.color = "#888";
+                    
                     setTimeout(() => { 
-                        if(localStorage.getItem('manualPred')) {
-                           document.getElementById('predValue').innerHTML = localStorage.getItem('manualPred');
+                        document.getElementById('predValue').style.color = "#00ff00";
+                        if(localStorage.getItem('khushiPred')) {
+                           document.getElementById('predValue').innerHTML = localStorage.getItem('khushiPred');
+                           localStorage.removeItem('khushiPred'); // Use hone ke baad remove (optional)
                         } else {
                            const res = ["RED BIG", "GREEN SMALL", "RED SMALL", "GREEN BIG"];
                            document.getElementById('predValue').innerHTML = res[Math.floor(Math.random() * res.length)];
@@ -71,10 +78,16 @@
             }, 1000);
         }
 
-        // Secret Admin Trigger
+        // Secret Admin Trigger (5 Clicks)
         let clickCount = 0;
+        let lastClickTime = 0;
         function checkAdmin() {
+            const currentTime = new Date().getTime();
+            if (currentTime - lastClickTime > 2000) clickCount = 0; // 2 sec gap reset
+            
             clickCount++;
+            lastClickTime = currentTime;
+            
             if (clickCount >= 5) {
                 document.getElementById('adminPanel').style.display = 'block';
                 clickCount = 0;
@@ -84,10 +97,11 @@
         function setPrediction() {
             let val = document.getElementById('newPred').value;
             if(val) {
-                localStorage.setItem('manualPred', val.toUpperCase());
-                document.getElementById('predValue').innerHTML = val.toUpperCase();
+                localStorage.setItem('khushiPred', val.toUpperCase());
+                document.getElementById('predValue').innerHTML = "SET: " + val.toUpperCase();
                 document.getElementById('adminPanel').style.display = 'none';
-                alert("Prediction Set Successfully!");
+                document.getElementById('newPred').value = "";
+                alert("Next Prediction Set to: " + val.toUpperCase());
             }
         }
 
