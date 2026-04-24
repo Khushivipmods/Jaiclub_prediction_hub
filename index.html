@@ -7,23 +7,32 @@
     <style>
         body { font-family: 'Poppins', sans-serif; background: #08080b; color: white; margin: 0; padding: 0; text-align: center; }
         .header { background: #1a1d35; padding: 15px; font-weight: bold; font-size: 20px; color: #7b61ff; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #333; }
-        .wallet-card { background: linear-gradient(135deg, #3a3f77, #1a1d35); margin: 15px; padding: 20px; border-radius: 20px; text-align: left; }
-        .balance { font-size: 28px; font-weight: bold; margin: 5px 0; color: #fff; }
+        
+        /* User Active Status Card */
+        .status-card { background: linear-gradient(135deg, #3a3f77, #1a1d35); margin: 15px; padding: 15px; border-radius: 20px; text-align: left; border: 1px solid #444; }
+        .server-status { font-size: 13px; color: #ccc; margin-bottom: 5px; }
+        .user-count-label { font-size: 14px; color: #bbb; }
+        .user-count-value { font-size: 24px; font-weight: bold; color: #00ff00; text-shadow: 0 0 10px rgba(0,255,0,0.3); }
+
         .timer-section { background: #1f2340; margin: 15px; padding: 15px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; }
         .period-id { font-size: 18px; font-weight: bold; color: #fff; letter-spacing: 1px; }
         .time-left { font-size: 32px; font-weight: 900; color: #ffcc00; font-family: 'Courier New', monospace; }
+        
         .result-card { background: #1a1d35; margin: 15px; padding: 20px; border-radius: 20px; border: 2px solid #333; }
         .res-value { font-size: 45px; font-weight: 900; color: #00ff00; margin: 10px 0; text-shadow: 0 0 20px rgba(0,255,0,0.4); }
         .num-val { color: #ffcc00; font-size: 55px; }
+        
         .btn { display: block; width: 100%; padding: 16px 0; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; text-transform: uppercase; margin-bottom: 15px; border: none; }
         .reg-btn { background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; }
         .tg-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: white; }
-        .notice-box { color: #ffcc00; font-size: 13px; margin: 10px 20px; font-weight: bold; }
+        
+        .notice-box { color: #ffcc00; font-size: 13px; margin: 10px 20px; font-weight: bold; line-height: 1.5; }
+        
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; }
         .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #000; width: 85%; padding: 25px; border-radius: 25px; text-align: center; border: 5px solid #ffcc00; }
     </style>
 </head>
-<body>
+<body onclick="checkAdmin()">
 
     <div id="noteOverlay" class="overlay">
         <div class="popup">
@@ -35,9 +44,10 @@
 
     <div class="header">JAI CLUB VIP PREDICTOR</div>
 
-    <div class="wallet-card">
-        <div style="font-size: 13px; color: #ccc;">Server Status: <span style="color:#00ff00;">Live Sync</span></div>
-        <div class="balance">₹ 1,45,280.00</div>
+    <div class="status-card">
+        <div class="server-status">Server Status: <span style="color:#00ff00; font-weight:bold;">CONNECTED ●</span></div>
+        <div class="user-count-label">Total Users Active:</div>
+        <div class="user-count-value" id="userCount">1542</div>
     </div>
 
     <div class="timer-section">
@@ -64,25 +74,31 @@
     </div>
 
     <script>
+        // Real-Time Active Users Logic
+        function updateUsers() {
+            let currentUsers = parseInt(document.getElementById('userCount').innerText);
+            // Randomly add or subtract between -5 and +8
+            let change = Math.floor(Math.random() * 14) - 5; 
+            let newCount = currentUsers + change;
+            
+            // Limit the count between 1500 and 1650 for realism
+            if (newCount < 1500) newCount = 1510;
+            if (newCount > 1650) newCount = 1640;
+            
+            document.getElementById('userCount').innerText = newCount;
+        }
+        setInterval(updateUsers, 2500); // Change every 2.5 seconds
+
         function updateGame() {
             const now = new Date();
             const seconds = now.getSeconds();
             const timeLeft = 60 - seconds;
-
-            // Date formatting
             const y = now.getFullYear();
             const m = (now.getMonth() + 1).toString().padStart(2, '0');
             const d = now.getDate().toString().padStart(2, '0');
 
-            // --- PERIOD CALCULATION LOGIC ---
-            // Abhi aapne bola 191 chal raha hai, usse match karne ke liye formula:
             const totalMinutes = (now.getHours() * 60) + now.getMinutes();
-            
-            // Adjusting based on current live number (191 at 8:40 AM)
-            // 8:40 AM = 520 minutes from midnight. 
-            // 520 - 191 = 329 (Your game's start offset)
             const currentPeriodCount = totalMinutes - 329; 
-
             const periodID = `${y}${m}${d}1000${10000 + currentPeriodCount}`;
             
             document.getElementById('periodDisplay').innerText = periodID;
@@ -106,13 +122,13 @@
         window.onload = () => {
             updateGame();
             generatePrediction();
-            if (!localStorage.getItem('khushiLastPop')) {
+            if (!localStorage.getItem('khushiUserPop')) {
                 document.getElementById('noteOverlay').style.display = 'block';
             }
         };
 
         function handlePopupClick() {
-            localStorage.setItem('khushiLastPop', 'true');
+            localStorage.setItem('khushiUserPop', 'true');
             document.getElementById('noteOverlay').style.display = 'none';
             window.location.href = "https://www.jaiclub25.com/#/register?invitationCode=463622850058";
         }
@@ -120,4 +136,5 @@
         setInterval(updateGame, 1000);
     </script>
 </body>
-</html>
+            </html>
+            
