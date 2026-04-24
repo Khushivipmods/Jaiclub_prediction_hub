@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guruji VIP Predictor</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: white; text-align: center; margin: 0; padding: 0; }
+        .header { background: linear-gradient(135deg, #ffcc00, #ff9900); color: #000; padding: 25px; font-size: 26px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .card { background: #1e1e1e; margin: 20px; padding: 25px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .timer { font-size: 20px; color: #ffcc00; margin-bottom: 10px; font-weight: bold; }
+        .prediction-title { font-size: 18px; color: #bbb; text-transform: uppercase; letter-spacing: 2px; }
+        .prediction-box { font-size: 45px; font-weight: 900; color: #00ff00; margin: 20px 0; text-shadow: 0 0 20px #00ff00; }
+        .btn { display: inline-block; background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; padding: 18px 0; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 15px; width: 90%; font-size: 18px; transition: 0.3s; }
+        .telegram-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: white; margin-top: 25px; }
+        .footer { font-size: 12px; color: #666; margin-top: 30px; padding-bottom: 20px; }
+        
+        /* Secret Admin Panel Style */
+        #adminPanel { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: black; padding: 20px; border-radius: 10px; z-index: 100; width: 80%; }
+        #adminPanel input { width: 90%; padding: 10px; margin-bottom: 10px; }
+    </style>
+</head>
+<body onclick="checkAdmin()">
+
+    <div class="header">👑 GURUJI OFFICIAL 👑</div>
+
+    <div class="card">
+        <div class="timer" id="clock">00:45</div>
+        <div class="prediction-title">Next Expected Result</div>
+        <div class="prediction-box" id="predValue">WAITING...</div>
+        <p style="color: #888;">Note: Always use 3X Plan for 100% Profit</p>
+        <a href="https://www.jaiclub11.com/#/register?invitationCode=27235106772" class="btn">REGISTER & PLAY NOW</a>
+    </div>
+
+    <div class="card">
+        <h3>VIP TELEGRAM JOIN KAREIN</h3>
+        <p>Daily 10+ Sure Shot Signals ke liye hamara official channel join karein.</p>
+        <a href="https://t.me/+5kOTkmfQqNNhYmJl" class="btn telegram-btn">JOIN TELEGRAM NOW</a>
+    </div>
+
+    <div class="footer">Powered by GURUJI Predictor v2.0</div>
+
+    <div id="adminPanel">
+        <h3>Admin Control</h3>
+        <input type="text" id="newPred" placeholder="Enter Result (e.g. RED BIG)">
+        <button onclick="setPrediction()">Set Prediction</button>
+    </div>
+
+    <script>
+        // Timer Logic
+        function startTimer() {
+            let timeLeft = 60;
+            setInterval(function() {
+                timeLeft--;
+                if (timeLeft <= 0) timeLeft = 60;
+                let display = timeLeft < 10 ? "00:0" + timeLeft : "00:" + timeLeft;
+                document.getElementById('clock').innerHTML = display;
+                
+                // Har minute prediction reset
+                if (timeLeft == 59) {
+                    document.getElementById('predValue').innerHTML = "ANALYZING...";
+                    setTimeout(() => { 
+                        if(localStorage.getItem('manualPred')) {
+                           document.getElementById('predValue').innerHTML = localStorage.getItem('manualPred');
+                        } else {
+                           const res = ["RED BIG", "GREEN SMALL", "RED SMALL", "GREEN BIG"];
+                           document.getElementById('predValue').innerHTML = res[Math.floor(Math.random() * res.length)];
+                        }
+                    }, 3000);
+                }
+            }, 1000);
+        }
+
+        // Secret Admin Trigger
+        let clickCount = 0;
+        function checkAdmin() {
+            clickCount++;
+            if (clickCount >= 5) {
+                document.getElementById('adminPanel').style.display = 'block';
+                clickCount = 0;
+            }
+        }
+
+        function setPrediction() {
+            let val = document.getElementById('newPred').value;
+            if(val) {
+                localStorage.setItem('manualPred', val.toUpperCase());
+                document.getElementById('predValue').innerHTML = val.toUpperCase();
+                document.getElementById('adminPanel').style.display = 'none';
+                alert("Prediction Set Successfully!");
+            }
+        }
+
+        window.onload = startTimer;
+    </script>
+</body>
+</html>
