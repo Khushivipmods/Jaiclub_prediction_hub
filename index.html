@@ -3,144 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khushi VIP - Live Predictor</title>
+    <title>Khushi VIP - Gaming Tool</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #080808; color: white; text-align: center; margin: 0; padding: 0; }
-        .header { background: linear-gradient(135deg, #ffcc00, #ff9900); color: #000; padding: 20px; font-size: 24px; font-weight: bold; box-shadow: 0 4px 20px rgba(255,204,0,0.4); text-transform: uppercase; }
-        .card { background: #111; margin: 20px; padding: 30px 20px; border-radius: 25px; border: 1px solid #222; box-shadow: 0 10px 40px rgba(0,0,0,0.9); }
-        .timer-label { font-size: 14px; color: #aaa; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
-        .timer { font-size: 45px; color: #ffcc00; margin-bottom: 20px; font-weight: bold; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(255,204,0,0.3); }
-        .prediction-title { font-size: 16px; color: #bbb; text-transform: uppercase; letter-spacing: 2px; }
-        .prediction-box { font-size: 50px; font-weight: 900; color: #00ff00; margin: 15px 0; text-shadow: 0 0 25px #00ff00; min-height: 120px; }
-        .number-display { color: #ffcc00; font-size: 65px; display: block; margin-top: 5px; }
-        .btn { display: inline-block; background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; padding: 18px 0; text-decoration: none; border-radius: 50px; font-weight: bold; width: 95%; font-size: 19px; box-shadow: 0 5px 20px rgba(0,200,83,0.4); text-transform: uppercase; border:none; cursor:pointer; }
+        body { font-family: 'Poppins', sans-serif; background: #08080b; color: white; margin: 0; padding: 0; text-align: center; }
+        .header { background: #1a1d35; padding: 15px; font-weight: bold; font-size: 20px; color: #7b61ff; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #333; }
         
-        .notice-text { color: #ffcc00; font-size: 14px; margin: 20px 10px; line-height: 1.6; font-weight: bold; text-align: center; }
-        
-        .telegram-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: white; margin-top: 20px; box-shadow: 0 5px 20px rgba(33,150,243,0.4); }
-        .footer { font-size: 11px; color: #444; margin-top: 40px; padding-bottom: 20px; }
-        
-        /* Popup Styles */
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); z-index: 1000; }
-        .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #000; width: 85%; padding: 25px; border-radius: 25px; text-align: center; border: 6px solid #ffcc00; box-shadow: 0 0 30px #ffcc00; }
-        .popup h2 { color: #ff0000; margin-top: 0; font-size: 26px; font-weight: 900; }
-        .popup p { font-size: 18px; font-weight: 800; line-height: 1.5; color: #111; margin: 15px 0; }
-        .popup-btn { background: #000; color: #ffcc00; padding: 15px 40px; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; cursor: pointer; }
-        
-        #adminPanel { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: black; padding: 25px; border-radius: 20px; z-index: 2000; width: 80%; }
+        /* Wallet & Header Card */
+        .wallet-card { background: linear-gradient(135deg, #3a3f77, #1a1d35); margin: 15px; padding: 20px; border-radius: 20px; text-align: left; position: relative; overflow: hidden; }
+        .wallet-card::after { content: '👑'; position: absolute; right: 10px; top: 10px; opacity: 0.2; font-size: 60px; }
+        .balance { font-size: 28px; font-weight: bold; margin: 5px 0; color: #fff; }
+
+        /* Timer Section (Auto Sync Logic) */
+        .timer-section { background: #1f2340; margin: 15px; padding: 15px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; }
+        .period-box { text-align: left; }
+        .period-label { font-size: 12px; color: #aaa; margin-bottom: 3px; }
+        .period-id { font-size: 18px; font-weight: bold; color: #fff; letter-spacing: 1px; }
+        .timer-box { text-align: right; }
+        .time-left { font-size: 32px; font-weight: 900; color: #ffcc00; font-family: 'Courier New', monospace; }
+
+        /* Prediction Result */
+        .result-card { background: #1a1d35; margin: 15px; padding: 20px; border-radius: 20px; border: 2px solid #333; }
+        .res-title { font-size: 14px; color: #bbb; text-transform: uppercase; letter-spacing: 2px; }
+        .res-value { font-size: 45px; font-weight: 900; color: #00ff00; margin: 10px 0; text-shadow: 0 0 20px rgba(0,255,0,0.4); }
+        .num-val { color: #ffcc00; font-size: 55px; }
+
+        /* Buttons */
+        .btn-box { padding: 15px; }
+        .btn { display: block; width: 100%; padding: 16px 0; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; text-transform: uppercase; margin-bottom: 15px; border: none; cursor: pointer; }
+        .reg-btn { background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; box-shadow: 0 5px 15px rgba(0,200,83,0.3); }
+        .tg-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: #fff; box-shadow: 0 5px 15px rgba(33,150,243,0.3); }
+
+        /* Notice */
+        .notice-box { color: #ffcc00; font-size: 13px; margin: 10px 20px; line-height: 1.5; font-weight: bold; }
+
+        /* Popup */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; }
+        .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #000; width: 85%; padding: 25px; border-radius: 25px; text-align: center; border: 5px solid #ffcc00; }
+        .popup-btn { background: #000; color: #ffcc00; padding: 12px 30px; border-radius: 10px; font-weight: bold; border: none; font-size: 16px; margin-top: 15px; }
     </style>
 </head>
-<body onclick="checkAdmin()">
+<body>
 
     <div id="noteOverlay" class="overlay">
         <div class="popup">
-            <h2>⚠️ ज़रूरी सूचना ⚠️</h2>
-            <p>यह टूल केवल उन लोगों के लिए काम करेगा जिन्होंने **हमारी Link** से नया अकाउंट रजिस्टर किया है।</p>
-            <p style="color: blue; font-size: 15px; font-weight: bold;">बिना हमारी लिंक वाले अकाउंट में यह टूल गलत रिजल्ट दिखा सकता है।</p>
-            <button class="popup-btn" onclick="handlePopupClick()">अभी नया अकाउंट बनायें 🚀</button>
+            <h2 style="color:red; margin:0;">⚠️ ज़रूरी सूचना ⚠️</h2>
+            <p style="font-weight:bold; font-size:16px;">यह टool केवल उन लोगों के लिए काम करेगा जिन्होंने **हमारी Link** से रजिस्टर किया है।</p>
+            <button class="popup-btn" onclick="handlePopupClick()">अभी रजिस्टर करें 🚀</button>
         </div>
     </div>
 
-    <div class="header">👑 Khushi 3 level tool 👑</div>
+    <div class="header">JAI CLUB VIP PREDICTOR</div>
 
-    <div class="card">
-        <div class="timer-label">Wingo 1-Min Time Left</div>
-        <div class="timer" id="clock">00:00</div>
-        <hr style="border: 0.5px solid #222; margin: 20px 0;">
-        <div class="prediction-title">Expected Result</div>
-        <div class="prediction-box">
-            <span id="sizeText">SCANNING...</span>
-            <span id="numText" class="number-display"></span>
+    <div class="wallet-card">
+        <div style="font-size: 13px; color: #ccc;">Khushi VIP Server Status: <span style="color:#00ff00;">Active</span></div>
+        <div class="balance">₹ 1,45,280.00</div>
+    </div>
+
+    <div class="timer-section">
+        <div class="period-box">
+            <div class="period-label">Wingo 1-Min Period</div>
+            <div class="period-id" id="periodDisplay">--------</div>
         </div>
+        <div class="timer-box">
+            <div class="period-label">Time Remaining</div>
+            <div class="time-left" id="clock">00:00</div>
+        </div>
+    </div>
+
+    <div class="result-card">
+        <div class="res-title">Upcoming Prediction</div>
+        <div id="resBox" class="res-value">SCANNING...</div>
+        <div id="numBox" class="num-val"></div>
+    </div>
+
+    <div class="btn-box">
+        <a href="https://www.jaiclub25.com/#/register?invitationCode=463622850058" class="btn reg-btn">REGISTER & PLAY NOW</a>
         
-        <a href="https://www.jaiclub25.com/#/register?invitationCode=463622850058" class="btn">REGISTER & PLAY NOW</a>
-
-        <div class="notice-text">
-            ये टूल सिर्फ हमारी लिंक से रजिस्टर किए हुए मेंबर्स के लिए ही काम करता है। जिसने हमारी लिंक से रजिस्टर नहीं किया है, तो अभी हमारी लिंक से रजिस्टर करें और हमारे टेलीग्राम चैनल को जॉइन करें ♥️
+        <div class="notice-box">
+            ⚠️ NOTICE: Ye tool sirf hamari link se register kiye hue members ke liye hi kaam karta hai. Jisne register nahi kiya hai wo abhi upar se register karein. ♥️
         </div>
 
-        <a href="https://t.me/+0EQgTdRbFXMyZjBl" class="btn telegram-btn">JOIN OFFICIAL TELEGRAM</a>
-    </div>
-
-    <div class="footer">Khushi Server v15.0 | Real-Time Live Sync</div>
-
-    <div id="adminPanel">
-        <h3>Admin Fix Result</h3>
-        <input type="text" id="newPred" placeholder="Example: BIG 7" style="width:90%; padding:10px; margin-bottom:10px;">
-        <button onclick="setPrediction()" style="background:#ffcc00; border:none; padding:10px; font-weight:bold; width:100%;">APPLY</button>
+        <a href="https://t.me/+0EQgTdRbFXMyZjBl" class="btn tg-btn">JOIN OFFICIAL TELEGRAM</a>
     </div>
 
     <script>
-        // Timer & Prediction Logic
+        // Real-Time Period ID & Timer Logic
         function updateGame() {
             const now = new Date();
             const seconds = now.getSeconds();
             const timeLeft = 60 - seconds;
+
+            // Auto Period ID Generation (YearMonthDay + Total Minutes)
+            const year = now.getFullYear();
+            const month = (now.getMonth() + 1).toString().padStart(2, '0');
+            const day = now.getDate().toString().padStart(2, '0');
+            const totalMinutes = now.getHours() * 60 + now.getMinutes();
+            const periodID = `${year}${month}${day}1000${10000 + totalMinutes}`;
+            
+            document.getElementById('periodDisplay').innerText = periodID;
             document.getElementById('clock').innerHTML = "00:" + (timeLeft < 10 ? "0" + timeLeft : timeLeft);
 
-            // Generate prediction at the start of each minute
             if (timeLeft === 59) {
                 generatePrediction();
             }
         }
 
         function generatePrediction() {
-            document.getElementById('sizeText').innerHTML = "SCANNING...";
-            document.getElementById('numText').innerHTML = "";
+            document.getElementById('resBox').innerHTML = "WAITING...";
+            document.getElementById('numBox').innerHTML = "";
             
-            setTimeout(() => { 
-                let finalResult;
-                if(localStorage.getItem('khushiPred')) {
-                   finalResult = localStorage.getItem('khushiPred');
-                   localStorage.removeItem('khushiPred');
-                } else {
-                   const sizes = ["BIG", "SMALL"];
-                   const size = sizes[Math.floor(Math.random() * 2)];
-                   const num = size === "BIG" ? [5,6,7,8,9] : [0,1,2,3,4];
-                   finalResult = size + " " + num[Math.floor(Math.random() * 5)];
-                }
-                let parts = finalResult.split(" ");
-                document.getElementById('sizeText').innerHTML = parts[0];
-                document.getElementById('numText').innerHTML = "No. " + parts[1];
-            }, 2500);
+            setTimeout(() => {
+                const sizes = ["BIG", "SMALL"];
+                const size = sizes[Math.floor(Math.random() * 2)];
+                const num = size === "BIG" ? [5,6,7,8,9] : [0,1,2,3,4];
+                const finalNum = num[Math.floor(Math.random() * 5)];
+                
+                document.getElementById('resBox').innerHTML = size;
+                document.getElementById('numBox').innerHTML = "No. " + finalNum;
+            }, 3000);
         }
 
-        // Popup Execution Logic
+        // Popup Logic
         window.onload = () => {
             updateGame();
             generatePrediction();
-            // Show only if not seen before
-            if (!localStorage.getItem('khushiPopupSeen')) {
+            if (!localStorage.getItem('khushiPopV2')) {
                 document.getElementById('noteOverlay').style.display = 'block';
             }
         };
 
         function handlePopupClick() {
-            localStorage.setItem('khushiPopupSeen', 'true');
+            localStorage.setItem('khushiPopV2', 'true');
             document.getElementById('noteOverlay').style.display = 'none';
             window.location.href = "https://www.jaiclub25.com/#/register?invitationCode=463622850058";
         }
 
         setInterval(updateGame, 1000);
-
-        // Admin Panel Logic
-        let clickCount = 0;
-        function checkAdmin() {
-            clickCount++;
-            if (clickCount >= 5) { 
-                document.getElementById('adminPanel').style.display = 'block'; 
-                clickCount = 0; 
-            }
-        }
-
-        function setPrediction() {
-            let val = document.getElementById('newPred').value;
-            if(val) {
-                localStorage.setItem('khushiPred', val.toUpperCase());
-                alert("Result Fixed for next round!");
-                document.getElementById('adminPanel').style.display = 'none';
-            }
-        }
     </script>
 </body>
 </html>
