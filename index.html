@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khushi VIP - Official Predictor</title>
+    <title>Khushi VIP - Jaiclub Special</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #080808; color: white; text-align: center; margin: 0; padding: 0; }
         .header { background: linear-gradient(135deg, #ffcc00, #ff9900); color: #000; padding: 20px; font-size: 24px; font-weight: bold; box-shadow: 0 4px 20px rgba(255,204,0,0.4); text-transform: uppercase; }
@@ -15,16 +15,14 @@
         .number-display { color: #ffcc00; font-size: 60px; display: block; }
         .btn { display: inline-block; background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; padding: 15px 0; text-decoration: none; border-radius: 50px; font-weight: bold; width: 95%; font-size: 18px; box-shadow: 0 5px 15px rgba(0,200,83,0.4); }
         .telegram-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: white; margin-top: 20px; }
-        .footer { font-size: 11px; color: #444; margin-top: 30px; padding-bottom: 20px; }
         
-        /* Premium Hindi Notice Popup */
-        .overlay { display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; }
+        /* Official Hindi Notice Popup */
+        .overlay { display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); z-index: 1000; }
         .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #000; width: 85%; padding: 25px; border-radius: 25px; text-align: center; border: 6px solid #ffcc00; box-shadow: 0 0 30px #ffcc00; }
         .popup h2 { color: #ff0000; margin-top: 0; font-size: 26px; font-weight: 900; }
-        .popup p { font-size: 19px; font-weight: 800; line-height: 1.5; color: #111; margin: 15px 0; }
-        .popup-btn { background: #000; color: #ffcc00; padding: 15px 40px; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; cursor: pointer; animation: bounce 1.5s infinite; }
+        .popup p { font-size: 18px; font-weight: 800; line-height: 1.5; color: #111; margin: 15px 0; }
+        .popup-btn { background: #000; color: #ffcc00; padding: 15px 40px; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; cursor: pointer; }
         
-        @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
         #adminPanel { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: black; padding: 20px; border-radius: 15px; z-index: 2000; width: 80%; }
     </style>
 </head>
@@ -33,13 +31,13 @@
     <div id="noteOverlay" class="overlay">
         <div class="popup">
             <h2>⚠️ ज़रूरी सूचना ⚠️</h2>
-            <p>यह Prediction टूल केवल उन लोगों के लिए काम करेगा जिन्होंने **हमारी Link** से नया अकाउंट रजिस्टर किया है।</p>
-            <p style="color: blue; font-size: 14px;">(अगर आप पुराने अकाउंट में खेलेंगे तो लॉस हो सकता है)</p>
-            <button class="popup-btn" onclick="handlePopupClick()">अभी रजिस्टर करें और जीतें 🚀</button>
+            <p>यह टूल केवल उन लोगों के लिए काम करेगा जिन्होंने **हमारी Link** से नया अकाउंट रजिस्टर किया है।</p>
+            <p style="color: blue; font-size: 15px; font-weight: bold;">बिना हमारी लिंक वाले अकाउंट में यह टूल गलत रिजल्ट दिखा सकता है।</p>
+            <button class="popup-btn" onclick="handlePopupClick()">अभी नया अकाउंट बनायें 🚀</button>
         </div>
     </div>
 
-    <div class="header">👑 KHUSHI OFFICIAL 👑</div>
+    <div class="header">👑 KHUSHI VIP 3 LVL 👑</div>
 
     <div class="card">
         <div class="period-info">Wingo 1-Min Period</div>
@@ -47,22 +45,22 @@
         <div class="timer" id="clock">00:00</div>
         <hr style="border: 0.5px solid #333;">
         <div class="prediction-box">
-            <span id="sizeText">ANALYZING...</span>
+            <span id="sizeText">SCANNING...</span>
             <span id="numText" class="number-display"></span>
         </div>
         <a href="https://www.jaiclub11.com/#/register?invitationCode=27235106772" class="btn">REGISTER & PLAY NOW</a>
     </div>
 
     <div class="card">
-        <a href="https://t.me/+0EQgTdRbFXMyZjBl" class="btn telegram-btn">JOIN OFFICIAL TELEGRAM</a>
+        <a href="https://t.me/+0EQgTdRbFXMyZjBl" class="btn telegram-btn">JOIN TELEGRAM NOW</a>
     </div>
 
-    <div class="footer">Khushi Prediction Server v13.0 | Jaiclub Official API</div>
+    <div class="footer">Khushi Server v14.0 | Jaiclub Real-Time Sync</div>
 
     <div id="adminPanel">
         <h3>Set Next Result</h3>
         <input type="text" id="newPred" placeholder="Example: BIG 7" style="width:90%; padding:10px; margin-bottom:10px;">
-        <button onclick="setPrediction()" style="background:#ffcc00; border:none; padding:10px; font-weight:bold; width:100%;">APPLY RESULT</button>
+        <button onclick="setPrediction()" style="background:#ffcc00; border:none; padding:10px; font-weight:bold; width:100%;">APPLY</button>
     </div>
 
     <script>
@@ -74,31 +72,31 @@
         function updateGame() {
             const now = new Date();
             
-            // 1. Exact Seconds Sync
+            // 1. Seconds Sync
             const seconds = now.getSeconds();
             const timeLeft = 60 - seconds;
             document.getElementById('clock').innerHTML = "00:" + (timeLeft < 10 ? "0" + timeLeft : timeLeft);
 
-            // 2. Period Number Logic (Jaiclub Format)
+            // 2. Exact Jaiclub Period Number Logic
             const yyyy = now.getFullYear();
             const mm = String(now.getMonth() + 1).padStart(2, '0');
             const dd = String(now.getDate()).padStart(2, '0');
-            const totalMinutes = (now.getHours() * 60) + now.getMinutes();
-            // Period: YYYYMMDD1000 + Minutes
-            const periodSuffix = 1000 + totalMinutes;
-            const period = `${yyyy}${mm}${dd}1000${periodSuffix}`;
+            
+            // Jaiclub logic: Total minutes since midnight + Base ID
+            const totalMinutesSinceMidnight = (now.getHours() * 60) + now.getMinutes() + 1;
+            const periodID = 10000 + totalMinutesSinceMidnight; 
+            const period = `${yyyy}${mm}${dd}1000${periodID}`;
+            
             document.getElementById('periodDisplay').innerHTML = period;
 
-            // 3. Auto-prediction at the start of new minute
             if (timeLeft === 59) {
                 generatePrediction();
             }
         }
 
         function generatePrediction() {
-            document.getElementById('sizeText').innerHTML = "SCANNING...";
+            document.getElementById('sizeText').innerHTML = "ANALYZING...";
             document.getElementById('numText').innerHTML = "";
-            
             setTimeout(() => { 
                 let finalResult;
                 if(localStorage.getItem('khushiPred')) {
@@ -122,17 +120,14 @@
         let clickCount = 0;
         function checkAdmin() {
             clickCount++;
-            if (clickCount >= 5) { 
-                document.getElementById('adminPanel').style.display = 'block'; 
-                clickCount = 0; 
-            }
+            if (clickCount >= 5) { document.getElementById('adminPanel').style.display = 'block'; clickCount = 0; }
         }
 
         function setPrediction() {
             let val = document.getElementById('newPred').value;
             if(val) {
                 localStorage.setItem('khushiPred', val.toUpperCase());
-                alert("Result Fixed Successfully!");
+                alert("Fixed!");
                 document.getElementById('adminPanel').style.display = 'none';
             }
         }
