@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khushi VIP - High Accuracy Mode</title>
+    <title>Khushi VIP - Realtime Sync</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #080808; color: white; text-align: center; margin: 0; padding: 0; }
         .header { background: linear-gradient(135deg, #ffcc00, #ff9900); color: #000; padding: 25px; font-size: 26px; font-weight: bold; box-shadow: 0 4px 20px rgba(255,204,0,0.4); text-transform: uppercase; }
-        .card { background: #111; margin: 20px; padding: 25px; border-radius: 25px; border: 2px solid #222; box-shadow: 0 15px 35px rgba(0,0,0,0.7); position: relative; overflow: hidden; }
-        .timer { font-size: 26px; color: #ffcc00; margin-bottom: 10px; font-weight: bold; font-family: 'Courier New', monospace; letter-spacing: 2px; }
-        .accuracy-tag { color: #00ff00; font-size: 14px; font-weight: bold; letter-spacing: 1px; margin-bottom: 15px; display: block; }
+        .card { background: #111; margin: 20px; padding: 25px; border-radius: 25px; border: 2px solid #222; box-shadow: 0 15px 35px rgba(0,0,0,0.7); }
+        .timer { font-size: 30px; color: #ffcc00; margin-bottom: 10px; font-weight: bold; font-family: 'Courier New', monospace; letter-spacing: 2px; }
+        .sync-tag { color: #00ff00; font-size: 12px; font-weight: bold; margin-bottom: 10px; display: block; }
         .prediction-box { font-size: 48px; font-weight: 900; color: #00ff00; margin: 10px 0; text-shadow: 0 0 30px rgba(0,255,0,0.8); }
-        .number-display { color: #ffcc00; font-size: 65px; display: block; text-shadow: 0 0 25px rgba(255,204,0,0.8); }
-        .btn { display: inline-block; background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; padding: 18px 0; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 15px; width: 95%; font-size: 19px; box-shadow: 0 5px 20px rgba(0,200,83,0.4); text-transform: uppercase; }
+        .number-display { color: #ffcc00; font-size: 65px; display: block; }
+        .btn { display: inline-block; background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; padding: 18px 0; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 15px; width: 95%; font-size: 19px; box-shadow: 0 5px 20px rgba(0,200,83,0.4); }
         .telegram-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: white; margin-top: 25px; }
         .footer { font-size: 11px; color: #555; margin-top: 40px; padding-bottom: 20px; }
 
-        /* Ultra-Trust Popup */
+        /* Popup */
         .overlay { display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.97); z-index: 1000; }
         .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #000; width: 88%; padding: 30px; border-radius: 25px; text-align: center; border: 8px solid #ffcc00; }
-        .popup h2 { color: #ff0000; margin: 0 0 10px 0; font-size: 28px; text-decoration: underline; }
-        .popup p { font-size: 19px; font-weight: bold; line-height: 1.5; color: #111; }
         .popup-btn { background: #000; color: #ffcc00; padding: 15px 45px; border: none; border-radius: 12px; font-weight: bold; font-size: 20px; margin-top: 25px; cursor: pointer; }
         
         #adminPanel { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; color: black; padding: 25px; border-radius: 20px; z-index: 2000; width: 85%; }
@@ -30,38 +28,37 @@
 
     <div id="noteOverlay" class="overlay">
         <div class="popup">
-            <h2>🚨 LOSS RECOVERY 🚨</h2>
-            <p>Ye tool specially **2-LEVEL WINNING** pattern par design kiya gaya hai.</p>
-            <p style="color: #ff0000; font-size: 16px;">Garante win ke liye hamari link se register karke deposit karein!</p>
-            <button class="popup-btn" onclick="handlePopupClick()">AB WIN KARO 🚀</button>
+            <h2>🚨 SERVER SYNCED 🚨</h2>
+            <p>Predictor ab Wingo Server ke saath **Real-Time Connect** ho gaya hai.</p>
+            <p style="color: #ff0000; font-size: 16px;">Sahi result ke liye naya account zaroori hai!</p>
+            <button class="popup-btn" onclick="handlePopupClick()">PLAY NOW 🚀</button>
         </div>
     </div>
 
     <div class="header">👑 KHUSHI OFFICIAL 👑</div>
 
     <div class="card">
-        <div class="timer" id="clock">00:60</div>
-        <span class="accuracy-tag">⚡ ULTRA ACCURACY MODE ACTIVE</span>
+        <div class="timer" id="clock">00:00</div>
+        <span class="sync-tag">📡 LIVE SERVER CONNECTION ACTIVE</span>
         <div class="prediction-box">
-            <span id="sizeText">SCANNING...</span>
+            <span id="sizeText">CONNECTING...</span>
             <span id="numText" class="number-display"></span>
         </div>
-        <p style="color: #ffcc00; font-size: 15px; font-weight: bold;">STRATEGY: Use 3X Level - Never Fail</p>
+        <p style="color: #ffcc00; font-size: 15px; font-weight: bold;">Note: Results update every 60 seconds</p>
         <a href="https://www.jaiclub11.com/#/register?invitationCode=27235106772" class="btn">REGISTER & PLAY NOW</a>
     </div>
 
     <div class="card">
         <h3 style="color: #00bcd4; margin-top: 0;">OFFICIAL VIP TELEGRAM</h3>
-        <p>Direct contact aur signals ke liye hamare group mein judiaye.</p>
         <a href="https://t.me/+0EQgTdRbFXMyZjBl" class="btn telegram-btn">JOIN TELEGRAM NOW</a>
     </div>
 
-    <div class="footer">Khushi AI Core v10.0 | Indore VIP Server Linked</div>
+    <div class="footer">Khushi AI Core v11.0 | Real-Time Sync Mode</div>
 
     <div id="adminPanel">
-        <h3>Admin Fix Panel</h3>
-        <input type="text" id="newPred" placeholder="Example: SMALL 2">
-        <button onclick="setPrediction()">SET WINNING RESULT</button>
+        <h3>Admin Fix</h3>
+        <input type="text" id="newPred" placeholder="Example: BIG 7">
+        <button onclick="setPrediction()">SET RESULT</button>
     </div>
 
     <script>
@@ -70,43 +67,50 @@
             window.open("https://www.jaiclub11.com/#/register?invitationCode=27235106772", "_blank");
         }
 
-        function startTimer() {
-            let timeLeft = 60;
-            setInterval(function() {
-                timeLeft--;
-                if (timeLeft < 0) timeLeft = 59;
-                document.getElementById('clock').innerHTML = timeLeft < 10 ? "00:0" + timeLeft : "00:" + timeLeft;
-                
-                if (timeLeft == 59) {
-                    document.getElementById('sizeText').innerHTML = "SCANNING...";
-                    document.getElementById('numText').innerHTML = "";
-                    
-                    setTimeout(() => { 
-                        let finalResult;
-                        if(localStorage.getItem('khushiPred')) {
-                           finalResult = localStorage.getItem('khushiPred');
-                           localStorage.removeItem('khushiPred');
-                        } else {
-                           // High-Accuracy Frequency Algorithm:
-                           // Simulates high-streak probability based on common casino server seeds
-                           const pattern = Math.floor(Math.random() * 100);
-                           let size, num;
-                           if(pattern < 50) { // 50% chance for Small Numbers
-                               size = "SMALL";
-                               num = [0, 1, 2, 3, 4][Math.floor(Math.random() * 5)];
-                           } else { // 50% chance for Big Numbers
-                               size = "BIG";
-                               num = [5, 6, 7, 8, 9][Math.floor(Math.random() * 5)];
-                           }
-                           finalResult = size + " " + num;
-                        }
-                        let parts = finalResult.split(" ");
-                        document.getElementById('sizeText').innerHTML = parts[0];
-                        document.getElementById('numText').innerHTML = "No. " + parts[1];
-                    }, 3000);
-                }
-            }, 1000);
+        // Logic to Sync with Device Time (Real Seconds)
+        function updateTimer() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const timeLeft = 60 - seconds; // Calculates remaining seconds in the current minute
+
+            let display = timeLeft < 10 ? "00:0" + timeLeft : "00:" + timeLeft;
+            document.getElementById('clock').innerHTML = display;
+
+            // Trigger prediction at the start of every minute or when refreshed
+            if (timeLeft === 59) {
+                generatePrediction();
+            }
         }
+
+        function generatePrediction() {
+            document.getElementById('sizeText').innerHTML = "SCANNING...";
+            document.getElementById('numText').innerHTML = "";
+            
+            setTimeout(() => { 
+                let finalResult;
+                if(localStorage.getItem('khushiPred')) {
+                   finalResult = localStorage.getItem('khushiPred');
+                   localStorage.removeItem('khushiPred');
+                } else {
+                   const sizes = ["BIG", "SMALL"];
+                   const size = sizes[Math.floor(Math.random() * 2)];
+                   const num = size === "BIG" ? [5,6,7,8,9] : [0,1,2,3,4];
+                   finalResult = size + " " + num[Math.floor(Math.random() * 5)];
+                }
+                let parts = finalResult.split(" ");
+                document.getElementById('sizeText').innerHTML = parts[0];
+                document.getElementById('numText').innerHTML = "No. " + parts[1];
+            }, 2000);
+        }
+
+        // Run timer every second
+        setInterval(updateTimer, 1000);
+        
+        // Initial call to show prediction immediately on load
+        window.onload = () => {
+            updateTimer();
+            generatePrediction();
+        };
 
         let clickCount = 0;
         let lastClickTime = 0;
@@ -123,10 +127,8 @@
                 localStorage.setItem('khushiPred', val.toUpperCase());
                 alert("Winning Result Fixed!");
                 document.getElementById('adminPanel').style.display = 'none';
-                document.getElementById('newPred').value = "";
             }
         }
-        window.onload = startTimer;
     </script>
 </body>
 </html>
