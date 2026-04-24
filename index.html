@@ -14,7 +14,11 @@
         .prediction-box { font-size: 50px; font-weight: 900; color: #00ff00; margin: 15px 0; text-shadow: 0 0 25px #00ff00; }
         .number-display { color: #ffcc00; font-size: 65px; display: block; margin-top: 5px; }
         .btn { display: inline-block; background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; padding: 18px 0; text-decoration: none; border-radius: 50px; font-weight: bold; width: 95%; font-size: 19px; box-shadow: 0 5px 20px rgba(0,200,83,0.4); text-transform: uppercase; }
-        .telegram-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: white; margin-top: 25px; }
+        
+        /* New Notice Style */
+        .notice-text { color: #ffcc00; font-size: 14px; margin: 20px 10px; line-height: 1.6; font-weight: bold; text-align: center; }
+        
+        .telegram-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: white; width: 95%; }
         .footer { font-size: 11px; color: #444; margin-top: 40px; padding-bottom: 20px; }
         
         /* Hindi Notice Popup */
@@ -49,75 +53,19 @@
             <span id="sizeText">SCANNING...</span>
             <span id="numText" class="number-display"></span>
         </div>
+        
         <a href="https://www.jaiclub25.com/#/register?invitationCode=463622850058" class="btn">REGISTER & PLAY NOW</a>
-    </div>
 
-    <div class="card" style="margin-top: 0; padding: 15px;">
-        <a href="https://t.me/+0EQgTdRbFXMyZjBl" class="btn telegram-btn" style="margin-top:0;">JOIN OFFICIAL TELEGRAM</a>
+        <div class="notice-text">
+            ये टूल सिर्फ हमारी लिंक से रजिस्टर किए हुए मेंबर्स के लिए ही काम करता है। जिसने हमारी लिंक से रजिस्टर नहीं किया है, तो अभी हमारी लिंक से रजिस्टर करें और हमारे टेलीग्राम चैनल को जॉइन करें ♥️
+        </div>
+
+        <a href="https://t.me/+0EQgTdRbFXMyZjBl" class="btn telegram-btn">JOIN OFFICIAL TELEGRAM</a>
     </div>
 
     <div class="footer">Khushi Server v15.0 | Real-Time Live Sync</div>
 
     <div id="adminPanel">
         <h3>Admin Fix Result</h3>
-        <input type="text" id="newPred" placeholder="Example: BIG 7" style="width:90%; padding:10px; margin-bottom:10px;">
-        <button onclick="setPrediction()" style="background:#ffcc00; border:none; padding:10px; font-weight:bold; width:100%;">APPLY</button>
-    </div>
-
-    <script>
-        function handlePopupClick() {
-            document.getElementById('noteOverlay').style.display = 'none';
-            window.open("https://www.jaiclub25.com/#/register?invitationCode=463622850058", "_blank");
-        }
-
-        function updateGame() {
-            const now = new Date();
-            const seconds = now.getSeconds();
-            const timeLeft = 60 - seconds;
-            document.getElementById('clock').innerHTML = "00:" + (timeLeft < 10 ? "0" + timeLeft : timeLeft);
-
-            if (timeLeft === 59) {
-                generatePrediction();
-            }
-        }
-
-        function generatePrediction() {
-            document.getElementById('sizeText').innerHTML = "WAITING...";
-            document.getElementById('numText').innerHTML = "";
-            setTimeout(() => { 
-                let finalResult;
-                if(localStorage.getItem('khushiPred')) {
-                   finalResult = localStorage.getItem('khushiPred');
-                   localStorage.removeItem('khushiPred');
-                } else {
-                   const sizes = ["BIG", "SMALL"];
-                   const size = sizes[Math.floor(Math.random() * 2)];
-                   const num = size === "BIG" ? [5,6,7,8,9] : [0,1,2,3,4];
-                   finalResult = size + " " + num[Math.floor(Math.random() * 5)];
-                }
-                let parts = finalResult.split(" ");
-                document.getElementById('sizeText').innerHTML = parts[0];
-                document.getElementById('numText').innerHTML = "No. " + parts[1];
-            }, 3000);
-        }
-
-        setInterval(updateGame, 1000);
-        window.onload = () => { updateGame(); generatePrediction(); };
-
-        let clickCount = 0;
-        function checkAdmin() {
-            clickCount++;
-            if (clickCount >= 5) { document.getElementById('adminPanel').style.display = 'block'; clickCount = 0; }
-        }
-
-        function setPrediction() {
-            let val = document.getElementById('newPred').value;
-            if(val) {
-                localStorage.setItem('khushiPred', val.toUpperCase());
-                alert("Fixed!");
-                document.getElementById('adminPanel').style.display = 'none';
-            }
-        }
-    </script>
-</body>
-</html>
+        <input type="text" id="newPred" placeholder="Example: BIG 7" style="width:90%; padding:1
+            
