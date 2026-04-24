@@ -7,39 +7,22 @@
     <style>
         body { font-family: 'Poppins', sans-serif; background: #08080b; color: white; margin: 0; padding: 0; text-align: center; }
         .header { background: #1a1d35; padding: 15px; font-weight: bold; font-size: 20px; color: #7b61ff; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #333; }
-        
-        /* Wallet & Header Card */
         .wallet-card { background: linear-gradient(135deg, #3a3f77, #1a1d35); margin: 15px; padding: 20px; border-radius: 20px; text-align: left; position: relative; overflow: hidden; }
-        .wallet-card::after { content: '👑'; position: absolute; right: 10px; top: 10px; opacity: 0.2; font-size: 60px; }
         .balance { font-size: 28px; font-weight: bold; margin: 5px 0; color: #fff; }
-
-        /* Timer Section (Auto Sync Logic) */
         .timer-section { background: #1f2340; margin: 15px; padding: 15px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; }
         .period-box { text-align: left; }
         .period-label { font-size: 12px; color: #aaa; margin-bottom: 3px; }
         .period-id { font-size: 18px; font-weight: bold; color: #fff; letter-spacing: 1px; }
-        .timer-box { text-align: right; }
         .time-left { font-size: 32px; font-weight: 900; color: #ffcc00; font-family: 'Courier New', monospace; }
-
-        /* Prediction Result */
         .result-card { background: #1a1d35; margin: 15px; padding: 20px; border-radius: 20px; border: 2px solid #333; }
-        .res-title { font-size: 14px; color: #bbb; text-transform: uppercase; letter-spacing: 2px; }
         .res-value { font-size: 45px; font-weight: 900; color: #00ff00; margin: 10px 0; text-shadow: 0 0 20px rgba(0,255,0,0.4); }
         .num-val { color: #ffcc00; font-size: 55px; }
-
-        /* Buttons */
-        .btn-box { padding: 15px; }
-        .btn { display: block; width: 100%; padding: 16px 0; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; text-transform: uppercase; margin-bottom: 15px; border: none; cursor: pointer; }
-        .reg-btn { background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; box-shadow: 0 5px 15px rgba(0,200,83,0.3); }
-        .tg-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: #fff; box-shadow: 0 5px 15px rgba(33,150,243,0.3); }
-
-        /* Notice */
-        .notice-box { color: #ffcc00; font-size: 13px; margin: 10px 20px; line-height: 1.5; font-weight: bold; }
-
-        /* Popup */
+        .btn { display: block; width: 100%; padding: 16px 0; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; text-transform: uppercase; margin-bottom: 15px; border: none; }
+        .reg-btn { background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; }
+        .tg-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: #fff; }
+        .notice-box { color: #ffcc00; font-size: 13px; margin: 10px 20px; font-weight: bold; }
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; }
         .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #000; width: 85%; padding: 25px; border-radius: 25px; text-align: center; border: 5px solid #ffcc00; }
-        .popup-btn { background: #000; color: #ffcc00; padding: 12px 30px; border-radius: 10px; font-weight: bold; border: none; font-size: 16px; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -47,15 +30,15 @@
     <div id="noteOverlay" class="overlay">
         <div class="popup">
             <h2 style="color:red; margin:0;">⚠️ ज़रूरी सूचना ⚠️</h2>
-            <p style="font-weight:bold; font-size:16px;">यह टool केवल उन लोगों के लिए काम करेगा जिन्होंने **हमारी Link** से रजिस्टर किया है।</p>
-            <button class="popup-btn" onclick="handlePopupClick()">अभी रजिस्टर करें 🚀</button>
+            <p style="font-weight:bold; font-size:16px;">यह टूल केवल उन लोगों के लिए काम करेगा जिन्होंने **हमारी Link** से रजिस्टर किया है।</p>
+            <button style="background:#000; color:#ffcc00; padding:12px 30px; border-radius:10px; font-weight:bold; border:none;" onclick="handlePopupClick()">अभी रजिस्टर करें 🚀</button>
         </div>
     </div>
 
     <div class="header">JAI CLUB VIP PREDICTOR</div>
 
     <div class="wallet-card">
-        <div style="font-size: 13px; color: #ccc;">Khushi VIP Server Status: <span style="color:#00ff00;">Active</span></div>
+        <div style="font-size: 13px; color: #ccc;">Server Status: <span style="color:#00ff00;">Connected</span></div>
         <div class="balance">₹ 1,45,280.00</div>
     </div>
 
@@ -71,69 +54,77 @@
     </div>
 
     <div class="result-card">
-        <div class="res-title">Upcoming Prediction</div>
+        <div style="font-size: 14px; color: #bbb; letter-spacing: 2px;">UPCOMING RESULT</div>
         <div id="resBox" class="res-value">SCANNING...</div>
         <div id="numBox" class="num-val"></div>
     </div>
 
-    <div class="btn-box">
+    <div style="padding: 15px;">
         <a href="https://www.jaiclub25.com/#/register?invitationCode=463622850058" class="btn reg-btn">REGISTER & PLAY NOW</a>
-        
-        <div class="notice-box">
-            ⚠️ NOTICE: Ye tool sirf hamari link se register kiye hue members ke liye hi kaam karta hai. Jisne register nahi kiya hai wo abhi upar se register karein. ♥️
-        </div>
-
-        <a href="https://t.me/+0EQgTdRbFXMyZjBl" class="btn tg-btn">JOIN OFFICIAL TELEGRAM</a>
+        <div class="notice-box">⚠️ NOTICE: Ye tool sirf hamari link se register kiye hue members ke liye hi kaam karta hai. ♥️</div>
+        <a href="https://t.me/+0EQgTdRbFXMyZjBl" class="btn tg-btn" style="margin-top:15px;">JOIN OFFICIAL TELEGRAM</a>
     </div>
 
     <script>
-        // Real-Time Period ID & Timer Logic
         function updateGame() {
             const now = new Date();
-            const seconds = now.getSeconds();
+            
+            // IST Time Conversion (Standard for Jaiclub)
+            const istOffset = 330; // Minutes
+            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+            const istTime = new Date(utc + (3600000 * 5.5));
+
+            const seconds = istTime.getSeconds();
             const timeLeft = 60 - seconds;
 
-            // Auto Period ID Generation (YearMonthDay + Total Minutes)
-            const year = now.getFullYear();
-            const month = (now.getMonth() + 1).toString().padStart(2, '0');
-            const day = now.getDate().toString().padStart(2, '0');
-            const totalMinutes = now.getHours() * 60 + now.getMinutes();
-            const periodID = `${year}${month}${day}1000${10000 + totalMinutes}`;
+            // Calculation for Period Number (Starts 5:30 AM)
+            const startOfDay = new Date(istTime);
+            startOfDay.setHours(5, 30, 0, 0);
+
+            // If current time is before 5:30 AM, use previous day's 5:30 AM
+            if (istTime < startOfDay) {
+                startOfDay.setDate(startOfDay.getDate() - 1);
+            }
+
+            const diffMs = istTime - startOfDay;
+            const diffMins = Math.floor(diffMs / 60000) + 1;
+
+            // Date Format: YYYYMMDD
+            const y = istTime.getFullYear();
+            const m = (istTime.getMonth() + 1).toString().padStart(2, '0');
+            const d = istTime.getDate().toString().padStart(2, '0');
+            
+            // Format: Date + 000 + Period Count (e.g., 20240510000187)
+            const periodID = `${y}${m}${d}000${diffMins.toString().padStart(3, '0')}`;
             
             document.getElementById('periodDisplay').innerText = periodID;
             document.getElementById('clock').innerHTML = "00:" + (timeLeft < 10 ? "0" + timeLeft : timeLeft);
 
-            if (timeLeft === 59) {
-                generatePrediction();
-            }
+            if (timeLeft === 59) { generatePrediction(); }
         }
 
         function generatePrediction() {
             document.getElementById('resBox').innerHTML = "WAITING...";
             document.getElementById('numBox').innerHTML = "";
-            
             setTimeout(() => {
                 const sizes = ["BIG", "SMALL"];
                 const size = sizes[Math.floor(Math.random() * 2)];
                 const num = size === "BIG" ? [5,6,7,8,9] : [0,1,2,3,4];
-                const finalNum = num[Math.floor(Math.random() * 5)];
-                
                 document.getElementById('resBox').innerHTML = size;
-                document.getElementById('numBox').innerHTML = "No. " + finalNum;
+                document.getElementById('numBox').innerHTML = "No. " + num[Math.floor(Math.random() * 5)];
             }, 3000);
         }
 
-        // Popup Logic
         window.onload = () => {
             updateGame();
             generatePrediction();
-            if (!localStorage.getItem('khushiPopV2')) {
+            if (!localStorage.getItem('khushiFinalPop')) {
                 document.getElementById('noteOverlay').style.display = 'block';
             }
         };
 
         function handlePopupClick() {
-            localStorage.setItem('khushiPopV2', 'true');
+            localStorage.setItem('khushiFinalPop', 'true');
             document.getElementById('noteOverlay').style.display = 'none';
             window.location.href = "https://www.jaiclub25.com/#/register?invitationCode=463622850058";
         }
