@@ -15,7 +15,6 @@
         .number-display { color: #ffcc00; font-size: 65px; display: block; margin-top: 5px; }
         .btn { display: inline-block; background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; padding: 18px 0; text-decoration: none; border-radius: 50px; font-weight: bold; width: 95%; font-size: 19px; box-shadow: 0 5px 20px rgba(0,200,83,0.4); text-transform: uppercase; }
         
-        /* New Notice Style */
         .notice-text { color: #ffcc00; font-size: 14px; margin: 20px 10px; line-height: 1.6; font-weight: bold; text-align: center; }
         
         .telegram-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: white; width: 95%; }
@@ -67,5 +66,64 @@
 
     <div id="adminPanel">
         <h3>Admin Fix Result</h3>
-        <input type="text" id="newPred" placeholder="Example: BIG 7" style="width:90%; padding:1
-            
+        <input type="text" id="newPred" placeholder="Example: BIG 7" style="width:90%; padding:10px; margin-bottom:10px;">
+        <button onclick="setPrediction()" style="background:#ffcc00; border:none; padding:10px; font-weight:bold; width:100%;">APPLY</button>
+    </div>
+
+    <script>
+        // FIXED: window.open ki jagah location use kiya hai taaki mobile par blocked na ho
+        function handlePopupClick() {
+            location.href = "https://www.jaiclub25.com/#/register?invitationCode=463622850058";
+        }
+
+        function updateGame() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const timeLeft = 60 - seconds;
+            document.getElementById('clock').innerHTML = "00:" + (timeLeft < 10 ? "0" + timeLeft : timeLeft);
+
+            if (timeLeft === 59) {
+                generatePrediction();
+            }
+        }
+
+        function generatePrediction() {
+            document.getElementById('sizeText').innerHTML = "WAITING...";
+            document.getElementById('numText').innerHTML = "";
+            setTimeout(() => { 
+                let finalResult;
+                if(localStorage.getItem('khushiPred')) {
+                   finalResult = localStorage.getItem('khushiPred');
+                   localStorage.removeItem('khushiPred');
+                } else {
+                   const sizes = ["BIG", "SMALL"];
+                   const size = sizes[Math.floor(Math.random() * 2)];
+                   const num = size === "BIG" ? [5,6,7,8,9] : [0,1,2,3,4];
+                   finalResult = size + " " + num[Math.floor(Math.random() * 5)];
+                }
+                let parts = finalResult.split(" ");
+                document.getElementById('sizeText').innerHTML = parts[0];
+                document.getElementById('numText').innerHTML = "No. " + parts[1];
+            }, 3000);
+        }
+
+        setInterval(updateGame, 1000);
+        window.onload = () => { updateGame(); generatePrediction(); };
+
+        let clickCount = 0;
+        function checkAdmin() {
+            clickCount++;
+            if (clickCount >= 5) { document.getElementById('adminPanel').style.display = 'block'; clickCount = 0; }
+        }
+
+        function setPrediction() {
+            let val = document.getElementById('newPred').value;
+            if(val) {
+                localStorage.setItem('khushiPred', val.toUpperCase());
+                alert("Fixed!");
+                document.getElementById('adminPanel').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
