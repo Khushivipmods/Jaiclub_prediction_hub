@@ -1,370 +1,460 @@
+               
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jalwa.Game - Home Portal</title>
+    <title>KHUSHI VIP MODS</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            user-select: none;
+        :root {
+            --neon-cyan: #00ffcc;
+            --neon-gold: #ffcc00;
+            --bg-dark: #0a0a0a;
+            --card-bg: #161616;
+            --telegram-color: #0088cc;
         }
         body {
-            background-color: #050a24;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
             color: #ffffff;
-            padding-bottom: 85px;
-        }
-
-        /* Header Layout */
-        .header {
-            background-color: #060e33;
-            padding: 12px 16px;
+            margin: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 52px;
-            border-bottom: 1px solid #101a4a;
-        }
-        .brand-logo {
-            font-size: 22px;
-            font-weight: 800;
-            color: #0df3ff;
-            font-style: italic;
-            letter-spacing: 0.5px;
-        }
-        .brand-logo span { color: #ffffff; font-size: 14px; font-style: normal; font-weight: 600; }
-        .menu-icon { font-size: 22px; color: #ffffff; }
-
-        /* Slider Banners Area */
-        .banner-row { display: flex; gap: 12px; padding: 14px 12px; }
-        .top-banner {
-            flex: 1;
-            height: 85px;
-            border-radius: 12px;
-            padding: 14px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-        .banner-1 { background: linear-gradient(135deg, #4b134f 0%, #c94b4b 100%); }
-        .banner-2 { background: linear-gradient(135deg, #0f2027 0%, #203a43 100%); }
-        .banner-title { font-size: 13px; font-weight: 700; line-height: 1.3; }
-        .shop-btn { background: #ffcc00; color: #000000; font-size: 9px; font-weight: bold; padding: 3px 10px; border-radius: 20px; border: none; width: fit-content; margin-top: 5px; }
-        .banner-art { position: absolute; right: 10px; bottom: 10px; font-size: 32px; }
-
-        /* Notification Ticker */
-        .notice-box {
-            background-color: #07103a;
-            padding: 8px 14px;
-            margin: 0 12px 12px 12px;
-            border-radius: 20px;
-            border: 1px solid #13226a;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .notice-icon { color: #ff9100; font-size: 13px; }
-        .notice-text { font-size: 11px; color: #ffeb3b; white-space: nowrap; overflow: hidden; width: 100%; }
-
-        /* Wallet Module */
-        .wallet-card {
-            background: #09133f;
-            border: 1px solid #142366;
-            border-radius: 12px;
-            margin: 0 12px 16px 12px;
-            padding: 14px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .lbl-bal { font-size: 12px; color: #8fa0dd; }
-        .val-bal { font-size: 22px; font-weight: 700; color: #ffffff; margin-top: 2px; }
-        .wallet-actions { display: flex; gap: 8px; }
-        .w-btn { padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; border: none; cursor: pointer; }
-        .btn-w { background: #1f2c6c; color: #8fa0dd; border: 1px solid #2a3c96; }
-        .btn-d { background: #00c853; color: #ffffff; }
-
-        /* Navigation Grid */
-        .cat-row { display: flex; gap: 8px; padding: 0 12px; margin-bottom: 16px; overflow-x: auto; }
-        .cat-tab { background: #09133f; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600; color: #8fa0dd; border: 1px solid #13226a; white-space: nowrap; }
-        .cat-tab.active { background: linear-gradient(180deg, #13278f 0%, #09133f 100%); border-color: #0df3ff; color: #ffffff; }
-
-        /* 2-Column Core Graphic Grid */
-        .games-layout-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            padding: 0 12px;
-        }
-        .premium-game-card {
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid #162677;
-            position: relative;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
-            display: flex;
-            flex-direction: column;
-            height: 155px;
-            background-color: #09133f;
-            cursor: pointer;
-        }
-        .premium-game-card:active { transform: scale(0.96); }
-        
-        .card-graphic-container {
-            width: 100%;
-            height: 120px;
-            overflow: hidden;
-            background-color: #0c1647;
-        }
-        
-        .banner-img-element {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .game-strip-footer {
-            background: #060e33;
-            padding: 6px 12px;
-            font-size: 12px;
-            font-weight: 700;
-            color: #ffffff;
-            border-top: 1px solid #142360;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .card-subtext { font-size: 10px; font-weight: normal; color: #8fa0dd; }
-        .mini-badge { position: absolute; top: 0; left: 0; color: white; font-size: 8px; font-weight: 800; padding: 2px 8px; border-bottom-right-radius: 8px; text-transform: uppercase; z-index: 5; }
-
-        /* Fixed App Navigation Layout */
-        .app-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #060d31;
-            border-top: 1px solid #15246b;
-            display: flex;
-            justify-content: space-around;
-            padding: 6px 0;
-            height: 56px;
-            z-index: 999;
-        }
-        .app-nav-link { display: flex; flex-direction: column; align-items: center; justify-content: center; color: #6d81c9; text-decoration: none; font-size: 10px; font-weight: 600; flex: 1; }
-        .app-nav-link.active { color: #0df3ff; }
-        .nav-ico { font-size: 18px; margin-bottom: 2px; }
-
-        /* Premium Coming Soon Overlay Window Modal */
-        .coming-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(3, 6, 26, 0.85);
-            z-index: 9999;
-            display: none;
-            align-items: center;
             justify-content: center;
-            padding: 24px;
-            backdrop-filter: blur(4px);
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            background-image: radial-gradient(circle at center, #1a2f2b 0%, #0a0a0a 70%);
         }
-        .coming-card {
-            background: linear-gradient(145deg, #0b1544 0%, #050a24 100%);
-            border: 2px solid #1a349e;
+        .container {
+            background-color: var(--card-bg);
+            padding: 35px 25px;
             border-radius: 20px;
-            width: 100%;
-            max-width: 320px;
-            padding: 24px 16px;
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.15);
             text-align: center;
-            box-shadow: 0 10px 30px rgba(13, 243, 255, 0.2);
-            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid var(--neon-cyan);
+            backdrop-filter: blur(10px);
         }
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .coming-icon {
-            font-size: 50px;
-            margin-bottom: 12px;
-            display: inline-block;
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .coming-game-title {
-            font-size: 20px;
-            font-weight: 800;
-            color: #0df3ff;
-            margin-bottom: 6px;
+        
+        h1, h2 {
+            color: var(--neon-cyan);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
             text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.6);
+            animation: breathe 3s infinite alternate;
+        }
+        @keyframes breathe {
+            0% { text-shadow: 0 0 10px rgba(0, 255, 204, 0.4); }
+            100% { text-shadow: 0 0 22px rgba(0, 255, 204, 0.9); }
+        }
+
+        p { line-height: 1.6; color: #cccccc; font-size: 15px; }
+        .highlight { color: var(--neon-gold); font-weight: bold; }
+
+        /* Buttons Styling */
+        .btn-main {
+            background: linear-gradient(135deg, var(--neon-gold) 0%, #e6b800 100%);
+            color: #000000;
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-weight: 900;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 204, 0, 0.4);
+        }
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 204, 0, 0.7);
+        }
+        
+        .btn-blue {
+            background: linear-gradient(135deg, #0088cc 0%, #006699 100%);
+            color: white;
+            padding: 14px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+        }
+
+        /* Premium Register Button Style */
+        .btn-register {
+            background: linear-gradient(135deg, #ffcc00 0%, #ffaa00 100%);
+            color: #000000;
+            padding: 15px;
+            border-radius: 25px;
+            font-weight: 900;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            box-sizing: border-box;
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 4px 18px rgba(255, 204, 0, 0.4);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 204, 0, 0.8);
+        }
+
+        /* Premium Telegram Button Style */
+        .btn-telegram {
+            background: linear-gradient(135deg, #24A1DE 0%, #1782b6 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            box-sizing: border-box;
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(36, 161, 222, 0.4);
+            transition: all 0.3s ease;
             letter-spacing: 0.5px;
         }
-        .coming-badge {
-            background: #ff9100;
-            color: #000;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 3px 12px;
+        .btn-telegram:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(36, 161, 222, 0.7);
+        }
+
+        /* UPI Section Styling */
+        .upi-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed var(--neon-cyan);
             border-radius: 12px;
-            display: inline-block;
-            margin-bottom: 14px;
-            text-transform: uppercase;
+            padding: 12px;
+            margin: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .coming-desc {
-            font-size: 13px;
-            color: #8fa0dd;
-            line-height: 1.5;
-            margin-bottom: 20px;
+        .upi-text {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--neon-cyan);
+            letter-spacing: 0.5px;
         }
-        .coming-close-btn {
-            background: linear-gradient(90deg, #0df3ff, #0091ea);
+        .btn-copy {
+            background: var(--neon-cyan);
             color: #000;
             border: none;
-            padding: 10px 30px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
             cursor: pointer;
-            width: 80%;
-            box-shadow: 0 4px 12px rgba(13, 243, 255, 0.3);
+            transition: background 0.2s;
         }
+        .btn-copy:hover {
+            background: #00ccaa;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border: 2px solid #333;
+            background-color: rgba(42, 42, 42, 0.6);
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .plans-box { 
+            background: rgba(255, 255, 255, 0.03); 
+            padding: 18px; 
+            border-radius: 12px; 
+            margin: 25px 0; 
+            text-align: left; 
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .plans-box ul { list-style: none; padding: 0; margin: 0; }
+        .plans-box li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .plans-box li:last-child { border-bottom: none; }
+        
+        .qr-section img { 
+            width: 180px; 
+            height: 180px; 
+            border: 3px solid #fff; 
+            border-radius: 12px; 
+            margin: 15px 0 5px 0; 
+        }
+        
+        /* Prediction Display Board */
+        .prediction-board {
+            background: linear-gradient(145deg, #11221f, #080f0e);
+            border: 2px solid var(--neon-cyan);
+            padding: 25px 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: inset 0 0 20px rgba(0, 255, 204, 0.15);
+        }
+        .period-box {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--neon-gold);
+            background: rgba(255, 204, 0, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            letter-spacing: 0.5px;
+        }
+        .prediction-text {
+            font-size: 38px;
+            font-weight: 900;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+            margin: 10px 0;
+            letter-spacing: 2px;
+        }
+        .game-timer {
+            font-size: 15px;
+            color: #ffcc00;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .notice-box {
+            background-color: rgba(255, 51, 51, 0.05); 
+            padding: 15px; 
+            border-radius: 12px; 
+            text-align: left; 
+            margin: 25px 0; 
+            border: 1px solid #ff3333;
+        }
+        
+        .link-footer { color: #888; text-decoration: underline; font-size: 13px; cursor: pointer; display: inline-block; margin-top: 20px; }
+        .link-footer:hover { color: var(--neon-cyan); }
+        .hidden { display: none !important; }
+        .error { color: #ff3333; font-weight: bold; margin-top: 12px; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <div class="brand-logo">JALWA<span>.Game</span></div>
-        <div class="menu-icon">≡</div>
+<div id="page-1" class="container">
+    <h1>KHUSHI VIP MODS</h1>
+    <p style="margin-bottom: 25px; color: #aaa;">Welcome to the Premium Prediction Server</p>
+    <button class="btn-main" onclick="goToPage2()">GET PREDICTION </button>
+</div>
+
+<div id="page-2" class="container hidden">
+    <h2>Premium Payment</h2>
+    <p>Neeche diye gaye scanner par FamPay se payment karein:</p>
+    
+    <div class="qr-section">
+        <img src="uploader_qr_code.png" alt="FamPay QR Code">
     </div>
 
-    <div class="banner-row">
-        <div class="top-banner banner-1">
-            <div class="banner-title">New Year<br>Lucky draw</div>
-            <button class="shop-btn">Shop now</button>
-            <span class="banner-art">🎁</span>
-        </div>
-        <div class="top-banner banner-2">
-            <div class="banner-title">Daily first<br>deposit bonus</div>
-            <button class="shop-btn" style="background:#00c853; color:white;">Shop now</button>
-            <span class="banner-art">🪙</span>
-        </div>
+    <div class="upi-container">
+        <span class="upi-text" id="upi-id">keshavpal@fam</span>
+        <button class="btn-copy" onclick="copyUpiId()">Copy ID</button>
     </div>
+
+    <div class="plans-box">
+        <ul>
+            <li> <span class="highlight">200</span> - 7 Days Premium VIP</li>
+            <li> <span class="highlight">500</span> - 20 Days Premium VIP</li>
+            <li> <span class="highlight">800</span> - 1 Month Premium VIP</li>
+        </ul>
+    </div>
+
+    <p style="margin-bottom: 5px;">Payment ke baad apna <b>12-digit UTR No.</b> submit karein:</p>
+    <input type="text" id="utr-number" placeholder="Enter 12 Digit UTR Number" maxlength="12">
+    <button class="btn-blue" onclick="processUtrSubmission()">SUBMIT UTR NUMBER </button>
+
+    <div class="link-footer" onclick="goToPage3Direct()">Already Paid? Enter Key</div>
+
+    <a href="https://t.me/khushi577788" class="btn-telegram" target="_blank"> Contact Admin On Telegram</a>
+</div>
+
+<div id="page-3" class="container hidden">
+    <h2>Activation Vault</h2>
+    <p>Admin se mili hui unique key neeche enter karein:</p>
+    
+    <input type="text" id="activation-key" placeholder="ENTER SECRET KEY HERE">
+    <button class="btn-main" onclick="validateKey()">ACTIVATE SYSTEM </button>
+    <div id="error-msg" class="error"></div>
+    
+    <div class="link-footer" onclick="backToPage2()" style="margin-top: 25px;"> Back to Payment Page</div>
+
+    <a href="https://t.me/khushi577788" class="btn-telegram" target="_blank"> Buy Key From Admin</a>
+</div>
+
+<div id="page-4" class="container hidden">
+    <h2 style="color: var(--neon-gold); text-shadow: 0 0 15px rgba(255,204,0,0.5);">KHUSHI VIP MODS</h2>
+    <p style="font-weight: bold; color: #888; margin-top: 0; letter-spacing: 1px;"> WINGI 1 MIN</p>
+    
+    <div id="timer-display" style="font-size: 14px; color: var(--neon-cyan); margin-bottom: 15px; font-weight: bold;"></div>
+
+    <div class="prediction-board">
+        <div class="period-box" id="live-period-id">Period ID: Loading...</div>
+        <p style="margin: 10px 0 0 0; font-size: 13px; color: #666; text-transform: uppercase; letter-spacing: 1px;">Current Prediction</p>
+        
+        <div class="prediction-text" id="live-pred-text"> BIG </div>
+        
+        <div class="game-timer" id="next-game-timer">Next Period In: --s</div>
+    </div>
+
+    <a href="http://www.dgclub.run/#/register?invitationCode=382321735554" class="btn-register" target="_blank"> Official Register Link</a>
 
     <div class="notice-box">
-        <span class="notice-icon">📢</span>
-        <div class="notice-text">
-            <marquee scrollamount="4">Notification: Special event for Wingo start on 2026/06/20! Check it now!! 🎉</marquee>
-        </div>
+        <p style="margin: 0; font-size: 14px; color: #ff9999; font-weight: bold;"> ZAROORI NOTICE:</p>
+        <p style="margin: 8px 0 0 0; font-size: 13px; line-height: 1.5; color: #dddddd;">
+            Hmare telegram ko join kro ye hack tabhi use hoga jab aap hmari link se rahoge haina. Rules follow nahi karne par aapka access block osakta hai.
+        </p>
     </div>
 
-    <div class="wallet-card">
-        <div>
-            <div class="lbl-bal">Wallet balance:</div>
-            <div class="val-bal" id="homeWalletBalance">₹1000.00</div>
-        </div>
-        <div class="wallet-actions">
-            <button class="w-btn btn-w" onclick="alert('Withdraw Open!')">Withdraw</button>
-            <button class="w-btn btn-d" onclick="alert('Deposit Open!')">Deposit</button>
-        </div>
-    </div>
+    <a href="https://t.me/khushi577788" class="btn-telegram" target="_blank"> Join Our Official Telegram Channel</a>
+</div>
 
-    <div class="cat-row">
-        <div class="cat-tab active">Lottery</div>
-        <div class="cat-tab">Mini games</div>
-        <div class="cat-tab">Slots</div>
-        <div class="cat-tab">Hot Slots</div>
-    </div>
+<script>
+    const VALID_KEYS = {
+        "7DAY_VIP1": 7, "7DAY_VIP2": 7, "S7_KHUSHI": 7,
+        "20DAY_PREM1": 20, "20DAY_PREM2": 20,
+        "1MONTH_BOSS": 30, "1MONTH_KING": 30
+    };
 
-    <div class="games-layout-grid">
+    window.onload = function() {
+        checkExistingAccess();
+        setInterval(calculateGamePeriod, 1000);
+    };
+
+    function copyUpiId() {
+        const upiText = document.getElementById('upi-id').innerText;
+        navigator.clipboard.writeText(upiText).then(() => {
+            alert("UPI ID successfully copy ho gayi hai!");
+        }).catch(err => {
+            alert("Copy nahi ho paya, please manually dekh kar type karein.");
+        });
+    }
+
+    function calculateGamePeriod() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const dateString = `${year}${month}${day}`;
+
+        const todayFiveAM = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 5, 0, 0, 0);
+        let secondsPassedSinceFiveAM = Math.floor((now.getTime() - todayFiveAM.getTime()) / 1000);
+
+        if (secondsPassedSinceFiveAM < 0) {
+            const yesterday = new Date();
+            yesterday.setDate(now.getDate() - 1);
+            const y_year = yesterday.getFullYear();
+            const y_month = String(yesterday.getMonth() + 1).padStart(2, '0');
+            const y_day = String(yesterday.getDate()).padStart(2, '0');
+            
+            const yesterdayFiveAM = new Date(yesterday.getFullYear(), yesterday.getMonth(), yesterday.getDate(), 5, 0, 0, 0);
+            secondsPassedSinceFiveAM = Math.floor((now.getTime() - yesterdayFiveAM.getTime()) / 1000);
+            
+            const periodSequence = Math.floor(secondsPassedSinceFiveAM / 60) + 1;
+            const formattedSequence = String(periodSequence).padStart(6, '0');
+            document.getElementById('live-period-id').innerText = `Period ID: ${y_year}${y_month}${y_day}${formattedSequence}`;
+        } else {
+            const periodSequence = Math.floor(secondsPassedSinceFiveAM / 60) + 1;
+            const formattedSequence = String(periodSequence).padStart(6, '0');
+            document.getElementById('live-period-id').innerText = `Period ID: ${dateString}${formattedSequence}`;
+        }
+
+        const secondsRemainingInMinute = 60 - (now.getSeconds());
+        document.getElementById('next-game-timer').innerText = `Next Period In: ${String(secondsRemainingInMinute).padStart(2, '0')}s`;
+    }
+
+    function hideAllPages() {
+        document.getElementById('page-1').classList.add('hidden');
+        document.getElementById('page-2').classList.add('hidden');
+        document.getElementById('page-3').classList.add('hidden');
+        document.getElementById('page-4').classList.add('hidden');
+    }
+
+    function goToPage2() {
+        hideAllPages();
+        document.getElementById('page-2').classList.remove('hidden');
+    }
+
+    function processUtrSubmission() {
+        const utrInput = document.getElementById('utr-number').value.trim();
+        if (utrInput.length < 12 || isNaN(utrInput)) {
+            alert("Kripya sahi 12-digit ka UTR number enter karein!");
+            return;
+        }
+        hideAllPages();
+        document.getElementById('page-3').classList.remove('hidden');
+    }
+
+    function goToPage3Direct() {
+        hideAllPages();
+        document.getElementById('page-3').classList.remove('hidden');
+    }
+
+    function backToPage2() {
+        hideAllPages();
+        document.getElementById('page-2').classList.remove('hidden');
+    }
+
+    function validateKey() {
+        const inputKey = document.getElementById('activation-key').value.trim();
+        const errorMsg = document.getElementById('error-msg');
         
-        <div class="premium-game-card" onclick="location.href='wingo.html'">
-            <span class="mini-badge" style="background: #00c853;">Hot</span>
-            <div class="card-graphic-container">
-                <img src="wingo.png" class="banner-img-element">
-            </div>
-            <div class="game-strip-footer">
-                <span>Win Go</span>
-                <span class="card-subtext">🟢 Live</span>
-            </div>
-        </div>
-
-        <div class="premium-game-card" onclick="location.href='aviator.html'">
-            <span class="mini-badge" style="background: #ff0055;">Crash</span>
-            <div class="card-graphic-container">
-                <img src="aviator.png" class="banner-img-element">
-            </div>
-            <div class="game-strip-footer">
-                <span>Aviator</span>
-                <span class="card-subtext">✈️ Play</span>
-            </div>
-        </div>
-
-        <div class="premium-game-card" onclick="showComingSoon('High Roller', '🎰', 'Get ready for the ultra high multiplier dice roll experience. Massive wins are coming your way very soon!')">
-            <span class="mini-badge" style="background: #ff9100;">X100</span>
-            <div class="card-graphic-container">
-                <img src="highroller.png" class="banner-img-element">
-            </div>
-            <div class="game-strip-footer">
-                <span>High Roller</span>
-                <span class="card-subtext">🎰 Casino</span>
-            </div>
-        </div>
-
-        <div class="premium-game-card" onclick="showComingSoon('Slots Classic', '💎', 'The legendary 777 spinning slot wheel machine is under maintenance optimization. Stay tuned for the ultimate thrill!')">
-            <div class="card-graphic-container">
-                <img src="slots.png" class="banner-img-element">
-            </div>
-            <div class="game-strip-footer">
-                <span>Slots</span>
-                <span class="card-subtext">💎 Classic</span>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="app-footer">
-        <a href="index.html" class="app-nav-link active"><span class="nav-ico">🏠</span>Home</a>
-        <a href="activity.html" class="app-nav-link"><span class="nav-ico">⚡</span>Activity</a>
-        <a href="promotion.html" class="app-nav-link"><span class="nav-ico">📊</span>Promotion</a>
-        <a href="wallet.html" class="app-nav-link"><span class="nav-ico">👛</span>Wallet</a>
-        <a href="account.html" class="app-nav-link"><span class="nav-ico">👤</span>My Account</a>
-    </div>
-
-    <div class="coming-overlay" id="comingSoonModal">
-        <div class="coming-card">
-            <div class="coming-icon" id="comingGameIcon">🎰</div>
-            <div class="coming-game-title" id="comingGameTitle">Game Title</div>
-            <div class="coming-badge">Coming Soon</div>
-            <div class="coming-desc" id="comingGameDesc">Game description will load dynamically here.</div>
-            <button class="coming-close-btn" onclick="hideComingSoon()">Awesome, Wait!</button>
-        </div>
-    </div>
-
-    <script>
-        // Synchronize central wallet values on Home Page
-        let currentWalletBalance = parseFloat(localStorage.getItem('user_jalwa_bal')) || 1000.00;
-        document.getElementById('homeWalletBalance').innerText = "₹" + currentWalletBalance.toFixed(2);
-
-        // Coming Soon Dynamic Popup Engine
-        function showComingSoon(gameName, gameIcon, gameDescription) {
-            document.getElementById('comingGameTitle').innerText = gameName;
-            document.getElementById('comingGameIcon').innerText = gameIcon;
-            document.getElementById('comingGameDesc').innerText = gameDescription;
-            document.getElementById('comingSoonModal').style.display = "flex";
+        if (VALID_KEYS.hasOwnProperty(inputKey)) {
+            const daysAllowed = VALID_KEYS[inputKey];
+            const expiryTime = new Date().getTime() + (daysAllowed * 24 * 60 * 60 * 1000);
+            
+            localStorage.setItem('premium_expiry', expiryTime);
+            errorMsg.innerText = "";
+            checkExistingAccess();
+        } else {
+            errorMsg.innerText = " Invalid Key! Sahi code enter karein ya admin se buy karein.";
         }
+    }
 
-        function hideComingSoon() {
-            document.getElementById('comingSoonModal').style.display = "none";
+    function checkExistingAccess() {
+        const savedExpiry = localStorage.getItem('premium_expiry');
+        const currentTime = new Date().getTime();
+
+        hideAllPages();
+
+        if (savedExpiry && currentTime <= parseInt(savedExpiry)) {
+            const timeLeft = parseInt(savedExpiry) - currentTime;
+            const daysLeft = Math.ceil(timeLeft / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('page-4').classList.remove('hidden');
+            document.getElementById('timer-display').innerHTML = `VIP ACCESS: <b>${daysLeft} Days Remaining</b>`;
+        } else {
+            localStorage.removeItem('premium_expiry');
+            document.getElementById('page-1').classList.remove('hidden');
         }
-    </script>
+    }
+</script>
 
 </body>
-    </html>
-                
+</html>
