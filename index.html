@@ -1,140 +1,370 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khushi VIP - Live Predictor</title>
+    <title>Jalwa.Game - Home Portal</title>
     <style>
-        body { font-family: 'Poppins', sans-serif; background: #08080b; color: white; margin: 0; padding: 0; text-align: center; }
-        .header { background: #1a1d35; padding: 15px; font-weight: bold; font-size: 20px; color: #7b61ff; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #333; }
-        
-        /* User Active Status Card */
-        .status-card { background: linear-gradient(135deg, #3a3f77, #1a1d35); margin: 15px; padding: 15px; border-radius: 20px; text-align: left; border: 1px solid #444; }
-        .server-status { font-size: 13px; color: #ccc; margin-bottom: 5px; }
-        .user-count-label { font-size: 14px; color: #bbb; }
-        .user-count-value { font-size: 24px; font-weight: bold; color: #00ff00; text-shadow: 0 0 10px rgba(0,255,0,0.3); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            user-select: none;
+        }
+        body {
+            background-color: #050a24;
+            color: #ffffff;
+            padding-bottom: 85px;
+        }
 
-        .timer-section { background: #1f2340; margin: 15px; padding: 15px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; }
-        .period-id { font-size: 18px; font-weight: bold; color: #fff; letter-spacing: 1px; }
-        .time-left { font-size: 32px; font-weight: 900; color: #ffcc00; font-family: 'Courier New', monospace; }
+        /* Header Layout */
+        .header {
+            background-color: #060e33;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 52px;
+            border-bottom: 1px solid #101a4a;
+        }
+        .brand-logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0df3ff;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+        .brand-logo span { color: #ffffff; font-size: 14px; font-style: normal; font-weight: 600; }
+        .menu-icon { font-size: 22px; color: #ffffff; }
+
+        /* Slider Banners Area */
+        .banner-row { display: flex; gap: 12px; padding: 14px 12px; }
+        .top-banner {
+            flex: 1;
+            height: 85px;
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .banner-1 { background: linear-gradient(135deg, #4b134f 0%, #c94b4b 100%); }
+        .banner-2 { background: linear-gradient(135deg, #0f2027 0%, #203a43 100%); }
+        .banner-title { font-size: 13px; font-weight: 700; line-height: 1.3; }
+        .shop-btn { background: #ffcc00; color: #000000; font-size: 9px; font-weight: bold; padding: 3px 10px; border-radius: 20px; border: none; width: fit-content; margin-top: 5px; }
+        .banner-art { position: absolute; right: 10px; bottom: 10px; font-size: 32px; }
+
+        /* Notification Ticker */
+        .notice-box {
+            background-color: #07103a;
+            padding: 8px 14px;
+            margin: 0 12px 12px 12px;
+            border-radius: 20px;
+            border: 1px solid #13226a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .notice-icon { color: #ff9100; font-size: 13px; }
+        .notice-text { font-size: 11px; color: #ffeb3b; white-space: nowrap; overflow: hidden; width: 100%; }
+
+        /* Wallet Module */
+        .wallet-card {
+            background: #09133f;
+            border: 1px solid #142366;
+            border-radius: 12px;
+            margin: 0 12px 16px 12px;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .lbl-bal { font-size: 12px; color: #8fa0dd; }
+        .val-bal { font-size: 22px; font-weight: 700; color: #ffffff; margin-top: 2px; }
+        .wallet-actions { display: flex; gap: 8px; }
+        .w-btn { padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; border: none; cursor: pointer; }
+        .btn-w { background: #1f2c6c; color: #8fa0dd; border: 1px solid #2a3c96; }
+        .btn-d { background: #00c853; color: #ffffff; }
+
+        /* Navigation Grid */
+        .cat-row { display: flex; gap: 8px; padding: 0 12px; margin-bottom: 16px; overflow-x: auto; }
+        .cat-tab { background: #09133f; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600; color: #8fa0dd; border: 1px solid #13226a; white-space: nowrap; }
+        .cat-tab.active { background: linear-gradient(180deg, #13278f 0%, #09133f 100%); border-color: #0df3ff; color: #ffffff; }
+
+        /* 2-Column Core Graphic Grid */
+        .games-layout-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 0 12px;
+        }
+        .premium-game-card {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #162677;
+            position: relative;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            height: 155px;
+            background-color: #09133f;
+            cursor: pointer;
+        }
+        .premium-game-card:active { transform: scale(0.96); }
         
-        .result-card { background: #1a1d35; margin: 15px; padding: 20px; border-radius: 20px; border: 2px solid #333; }
-        .res-value { font-size: 45px; font-weight: 900; color: #00ff00; margin: 10px 0; text-shadow: 0 0 20px rgba(0,255,0,0.4); }
-        .num-val { color: #ffcc00; font-size: 55px; }
+        .card-graphic-container {
+            width: 100%;
+            height: 120px;
+            overflow: hidden;
+            background-color: #0c1647;
+        }
         
-        .btn { display: block; width: 100%; padding: 16px 0; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; text-transform: uppercase; margin-bottom: 15px; border: none; }
-        .reg-btn { background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; }
-        .tg-btn { background: linear-gradient(90deg, #2196f3, #00bcd4); color: white; }
-        
-        .notice-box { color: #ffcc00; font-size: 13px; margin: 10px 20px; font-weight: bold; line-height: 1.5; }
-        
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; }
-        .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #000; width: 85%; padding: 25px; border-radius: 25px; text-align: center; border: 5px solid #ffcc00; }
+        .banner-img-element {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .game-strip-footer {
+            background: #060e33;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #ffffff;
+            border-top: 1px solid #142360;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-subtext { font-size: 10px; font-weight: normal; color: #8fa0dd; }
+        .mini-badge { position: absolute; top: 0; left: 0; color: white; font-size: 8px; font-weight: 800; padding: 2px 8px; border-bottom-right-radius: 8px; text-transform: uppercase; z-index: 5; }
+
+        /* Fixed App Navigation Layout */
+        .app-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #060d31;
+            border-top: 1px solid #15246b;
+            display: flex;
+            justify-content: space-around;
+            padding: 6px 0;
+            height: 56px;
+            z-index: 999;
+        }
+        .app-nav-link { display: flex; flex-direction: column; align-items: center; justify-content: center; color: #6d81c9; text-decoration: none; font-size: 10px; font-weight: 600; flex: 1; }
+        .app-nav-link.active { color: #0df3ff; }
+        .nav-ico { font-size: 18px; margin-bottom: 2px; }
+
+        /* Premium Coming Soon Overlay Window Modal */
+        .coming-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(3, 6, 26, 0.85);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            backdrop-filter: blur(4px);
+        }
+        .coming-card {
+            background: linear-gradient(145deg, #0b1544 0%, #050a24 100%);
+            border: 2px solid #1a349e;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 320px;
+            padding: 24px 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(13, 243, 255, 0.2);
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .coming-icon {
+            font-size: 50px;
+            margin-bottom: 12px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .coming-game-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0df3ff;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .coming-badge {
+            background: #ff9100;
+            color: #000;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 12px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+        .coming-desc {
+            font-size: 13px;
+            color: #8fa0dd;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .coming-close-btn {
+            background: linear-gradient(90deg, #0df3ff, #0091ea);
+            color: #000;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 80%;
+            box-shadow: 0 4px 12px rgba(13, 243, 255, 0.3);
+        }
     </style>
 </head>
-<body onclick="checkAdmin()">
+<body>
 
-    <div id="noteOverlay" class="overlay">
-        <div class="popup">
-            <h2 style="color:red; margin:0;">⚠️ ज़रूरी सूचना ⚠️</h2>
-            <p style="font-weight:bold; font-size:16px;">यह टूल केवल उन लोगों के लिए काम करेगा जिन्होंने **हमारी Link** से रजिस्टर किया है।</p>
-            <button style="background:#000; color:#ffcc00; padding:12px 30px; border-radius:10px; font-weight:bold; border:none;" onclick="handlePopupClick()">अभी रजिस्टर करें 🚀</button>
+    <div class="header">
+        <div class="brand-logo">JALWA<span>.Game</span></div>
+        <div class="menu-icon">≡</div>
+    </div>
+
+    <div class="banner-row">
+        <div class="top-banner banner-1">
+            <div class="banner-title">New Year<br>Lucky draw</div>
+            <button class="shop-btn">Shop now</button>
+            <span class="banner-art">🎁</span>
+        </div>
+        <div class="top-banner banner-2">
+            <div class="banner-title">Daily first<br>deposit bonus</div>
+            <button class="shop-btn" style="background:#00c853; color:white;">Shop now</button>
+            <span class="banner-art">🪙</span>
         </div>
     </div>
 
-    <div class="header">JAI CLUB VIP PREDICTOR</div>
-
-    <div class="status-card">
-        <div class="server-status">Server Status: <span style="color:#00ff00; font-weight:bold;">CONNECTED ●</span></div>
-        <div class="user-count-label">Total Users Active:</div>
-        <div class="user-count-value" id="userCount">1542</div>
-    </div>
-
-    <div class="timer-section">
-        <div style="text-align:left;">
-            <div style="font-size:12px; color:#aaa;">Wingo 1-Min Period</div>
-            <div class="period-id" id="periodDisplay">--------</div>
-        </div>
-        <div style="text-align:right;">
-            <div style="font-size:12px; color:#aaa;">Time Left</div>
-            <div class="time-left" id="clock">00:00</div>
+    <div class="notice-box">
+        <span class="notice-icon">📢</span>
+        <div class="notice-text">
+            <marquee scrollamount="4">Notification: Special event for Wingo start on 2026/06/20! Check it now!! 🎉</marquee>
         </div>
     </div>
 
-    <div class="result-card">
-        <div style="font-size:14px; color:#bbb; letter-spacing:2px;">PREDICTED RESULT</div>
-        <div id="resBox" class="res-value">SCANNING...</div>
-        <div id="numBox" class="num-val"></div>
+    <div class="wallet-card">
+        <div>
+            <div class="lbl-bal">Wallet balance:</div>
+            <div class="val-bal" id="homeWalletBalance">₹1000.00</div>
+        </div>
+        <div class="wallet-actions">
+            <button class="w-btn btn-w" onclick="alert('Withdraw Open!')">Withdraw</button>
+            <button class="w-btn btn-d" onclick="alert('Deposit Open!')">Deposit</button>
+        </div>
     </div>
 
-    <div style="padding:15px;">
-        <a href="https://www.jaiclub25.com/#/register?invitationCode=463622850058" class="btn reg-btn">REGISTER & PLAY NOW</a>
-        <div class="notice-box">⚠️ NOTE: Ye tool sirf hamari link se register members ke liye kaam karega. ♥️</div>
-        <a href="https://t.me/+0EQgTdRbFXMyZjBl" class="btn tg-btn" style="margin-top:10px;">JOIN OFFICIAL TELEGRAM</a>
+    <div class="cat-row">
+        <div class="cat-tab active">Lottery</div>
+        <div class="cat-tab">Mini games</div>
+        <div class="cat-tab">Slots</div>
+        <div class="cat-tab">Hot Slots</div>
+    </div>
+
+    <div class="games-layout-grid">
+        
+        <div class="premium-game-card" onclick="location.href='wingo.html'">
+            <span class="mini-badge" style="background: #00c853;">Hot</span>
+            <div class="card-graphic-container">
+                <img src="wingo.png" class="banner-img-element">
+            </div>
+            <div class="game-strip-footer">
+                <span>Win Go</span>
+                <span class="card-subtext">🟢 Live</span>
+            </div>
+        </div>
+
+        <div class="premium-game-card" onclick="location.href='aviator.html'">
+            <span class="mini-badge" style="background: #ff0055;">Crash</span>
+            <div class="card-graphic-container">
+                <img src="aviator.png" class="banner-img-element">
+            </div>
+            <div class="game-strip-footer">
+                <span>Aviator</span>
+                <span class="card-subtext">✈️ Play</span>
+            </div>
+        </div>
+
+        <div class="premium-game-card" onclick="showComingSoon('High Roller', '🎰', 'Get ready for the ultra high multiplier dice roll experience. Massive wins are coming your way very soon!')">
+            <span class="mini-badge" style="background: #ff9100;">X100</span>
+            <div class="card-graphic-container">
+                <img src="highroller.png" class="banner-img-element">
+            </div>
+            <div class="game-strip-footer">
+                <span>High Roller</span>
+                <span class="card-subtext">🎰 Casino</span>
+            </div>
+        </div>
+
+        <div class="premium-game-card" onclick="showComingSoon('Slots Classic', '💎', 'The legendary 777 spinning slot wheel machine is under maintenance optimization. Stay tuned for the ultimate thrill!')">
+            <div class="card-graphic-container">
+                <img src="slots.png" class="banner-img-element">
+            </div>
+            <div class="game-strip-footer">
+                <span>Slots</span>
+                <span class="card-subtext">💎 Classic</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="app-footer">
+        <a href="index.html" class="app-nav-link active"><span class="nav-ico">🏠</span>Home</a>
+        <a href="activity.html" class="app-nav-link"><span class="nav-ico">⚡</span>Activity</a>
+        <a href="promotion.html" class="app-nav-link"><span class="nav-ico">📊</span>Promotion</a>
+        <a href="wallet.html" class="app-nav-link"><span class="nav-ico">👛</span>Wallet</a>
+        <a href="account.html" class="app-nav-link"><span class="nav-ico">👤</span>My Account</a>
+    </div>
+
+    <div class="coming-overlay" id="comingSoonModal">
+        <div class="coming-card">
+            <div class="coming-icon" id="comingGameIcon">🎰</div>
+            <div class="coming-game-title" id="comingGameTitle">Game Title</div>
+            <div class="coming-badge">Coming Soon</div>
+            <div class="coming-desc" id="comingGameDesc">Game description will load dynamically here.</div>
+            <button class="coming-close-btn" onclick="hideComingSoon()">Awesome, Wait!</button>
+        </div>
     </div>
 
     <script>
-        // Real-Time Active Users Logic
-        function updateUsers() {
-            let currentUsers = parseInt(document.getElementById('userCount').innerText);
-            // Randomly add or subtract between -5 and +8
-            let change = Math.floor(Math.random() * 14) - 5; 
-            let newCount = currentUsers + change;
-            
-            // Limit the count between 1500 and 1650 for realism
-            if (newCount < 1500) newCount = 1510;
-            if (newCount > 1650) newCount = 1640;
-            
-            document.getElementById('userCount').innerText = newCount;
-        }
-        setInterval(updateUsers, 2500); // Change every 2.5 seconds
+        // Synchronize central wallet values on Home Page
+        let currentWalletBalance = parseFloat(localStorage.getItem('user_jalwa_bal')) || 1000.00;
+        document.getElementById('homeWalletBalance').innerText = "₹" + currentWalletBalance.toFixed(2);
 
-        function updateGame() {
-            const now = new Date();
-            const seconds = now.getSeconds();
-            const timeLeft = 60 - seconds;
-            const y = now.getFullYear();
-            const m = (now.getMonth() + 1).toString().padStart(2, '0');
-            const d = now.getDate().toString().padStart(2, '0');
-
-            const totalMinutes = (now.getHours() * 60) + now.getMinutes();
-            const currentPeriodCount = totalMinutes - 329; 
-            const periodID = `${y}${m}${d}1000${10000 + currentPeriodCount}`;
-            
-            document.getElementById('periodDisplay').innerText = periodID;
-            document.getElementById('clock').innerHTML = "00:" + (timeLeft < 10 ? "0" + timeLeft : timeLeft);
-
-            if (timeLeft === 59) { generatePrediction(); }
+        // Coming Soon Dynamic Popup Engine
+        function showComingSoon(gameName, gameIcon, gameDescription) {
+            document.getElementById('comingGameTitle').innerText = gameName;
+            document.getElementById('comingGameIcon').innerText = gameIcon;
+            document.getElementById('comingGameDesc').innerText = gameDescription;
+            document.getElementById('comingSoonModal').style.display = "flex";
         }
 
-        function generatePrediction() {
-            document.getElementById('resBox').innerHTML = "WAITING...";
-            document.getElementById('numBox').innerHTML = "";
-            setTimeout(() => {
-                const sizes = ["BIG", "SMALL"];
-                const size = sizes[Math.floor(Math.random() * 2)];
-                const num = size === "BIG" ? [5,6,7,8,9] : [0,1,2,3,4];
-                document.getElementById('resBox').innerHTML = size;
-                document.getElementById('numBox').innerHTML = "No. " + num[Math.floor(Math.random() * 5)];
-            }, 3000);
+        function hideComingSoon() {
+            document.getElementById('comingSoonModal').style.display = "none";
         }
-
-        window.onload = () => {
-            updateGame();
-            generatePrediction();
-            if (!localStorage.getItem('khushiUserPop')) {
-                document.getElementById('noteOverlay').style.display = 'block';
-            }
-        };
-
-        function handlePopupClick() {
-            localStorage.setItem('khushiUserPop', 'true');
-            document.getElementById('noteOverlay').style.display = 'none';
-            window.location.href = "https://www.jaiclub25.com/#/register?invitationCode=463622850058";
-        }
-
-        setInterval(updateGame, 1000);
     </script>
+
 </body>
-            </html>
-            
+    </html>
+                
